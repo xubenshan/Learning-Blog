@@ -61,3 +61,7 @@ Bonjour!
 Ciao!
 
 <!-- tabs:end -->
+```cpp
+#include <iostream>
+using namespace std;
+```
