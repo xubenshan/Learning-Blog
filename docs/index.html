@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
     <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />   -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+    
     <meta
       name="google-site-verification"
       content="6t0LoIeFksrjF4c9sqUEsVXiQNxLp2hgoqo0KryT-sE"
@@ -58,6 +59,11 @@
 
   <body>
     <!-- <div id="gitalk-container"></div> -->
+    <!-- <button class="docsify-tabs__tab docsify-tabs__tab--active" data-tab="active state">Active State</button>
+<div class="docsify-tabs__content" data-tab-content="active state">
+  ...
+</div> -->
+
     <div id="app">Loading ...</div>
     <script src="//cdn.jsdelivr.net/npm/docsify-plugin-carbon@1"></script>
     <script>
@@ -85,6 +91,7 @@
         //   '/zh-cn/(.*)':
         //     'https://cdn.jsdelivr.net/gh/docsifyjs/docs-zh@master/$1',
         // },
+        
         auto2top: true,
         coverpage: true,
         executeScript: true,
@@ -124,6 +131,13 @@
         //   },
         //   pathNamespaces: ['/es', '/de-de', '/ru-ru', '/zh-cn'],
         // },
+        tabs: {
+    persist    : true,      // default
+    sync       : true,      // default
+    theme      : 'material', // default
+    tabComments: true,      // default
+    tabHeadings: true       // default
+  },
         search: {
             paths: 'auto',
             placeholder: '🔍 Type to search ',
@@ -226,6 +240,8 @@
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
       <!-- 一键复制插件 -->
     <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
       <!-- gitalk插件 -->
@@ -317,10 +333,10 @@
           color: #7a7a7a !important;
       }
   
-      body {
+      /* body {
           /*font-family: Microsoft YaHei, Source Sans Pro, Helvetica Neue, Arial, sans-serif !important;*/
-      }
-  
+      /* } */
+   */
       .markdown-section>p {
           font-size: 16px !important;
       }
@@ -601,6 +617,10 @@
   
       pre .line-highlight {
           margin-top: 0;
+      }
+      :root {
+    --docsifytabs-border-color: #584d4d;
+    --docsifytabs-tab-highlight-color: rgb(4, 0, 128);
       }
       </style>
   </body>
