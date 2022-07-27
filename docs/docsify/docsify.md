@@ -42,18 +42,16 @@
 
 打开`http://localhost:3000`网址。
 
-<<<<<<< HEAD
-# 推送到远程仓库
-
-更新本地代码，执行`git push -u origin origin/master`。
-
-![image-20220727065800282](C:/Users/86186/AppData/Roaming/Typora/typora-user-images/image-20220727065800282.png)
-=======
 # **推送到远程仓库**
 
-更新本地代码，执行`git push -u origin origin/master`。
+## 关联远程仓库
 
-![image-20220727071526338](C:/Users/86186/AppData/Roaming/Typora/typora-user-images/image-20220727071526338.png)
->>>>>>> newbranch
+## 本地代码修改后更新到远程仓库
 
-若出现上述情况，说明网络有问题。等网络畅通的时候再执行即可。出现`Everything up-to-date`证明更新成功。
+* `git add .`
+
+* `git commit -m "提示信息"`
+
+* `git push origin master`
+
+  
