@@ -20,7 +20,7 @@
 
 输入`cnpm i docsify-cli -g`，
 
-![image-20220726162218270](C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20220726162218270.png)
+![image-20220727102139553](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/202207271021617.png)
 
 检查`docsify`是否安装成功
 
@@ -38,7 +38,7 @@
 
   ` docsify serve ./docs`
 
-![image-20220726162947582](C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20220726162947582.png)
+![image-20220726162947582](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/202207271020075.png)
 
 打开`http://localhost:3000`网址。
 
