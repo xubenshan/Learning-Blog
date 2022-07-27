@@ -88,7 +88,7 @@
         auto2top: true,
         coverpage: true,
         executeScript: true,
-        loadSidebar: true,//将侧边栏隐藏掉，只显示文章的目录
+        loadSidebar: false,//将侧边栏隐藏掉，只显示文章的目录
         loadNavbar: true,
         mergeNavbar: true,
         maxLevel: 4,
@@ -250,7 +250,7 @@
     owner: 'xubenshan',
     admin: ['xubenshan'],
     // facebook-like distraction free mode
-    id: location.pathname,
+    // id: location.pathname,
     distractionFreeMode: false
   })
   gitalk.render('gitalk-container')
