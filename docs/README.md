@@ -4,11 +4,11 @@
 
 笔记站点是由`docsify`搭建成的，具体的搭建过程可以移步到[docsify搭建教程](/docsify/docsify.md)。另外可以参考[官方文档](https://docsify.js.org/#/)。
 
-# **数据结构与算法**
+# **算法**
 
-## c语言
+## 算法笔记
 
-## c++语言
+## 算法题目
 
 <!-- tabs:start -->
 

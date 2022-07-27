@@ -91,7 +91,10 @@
         //   '/zh-cn/(.*)':
         //     'https://cdn.jsdelivr.net/gh/docsifyjs/docs-zh@master/$1',
         // },
-        
+         // docsify-valine (defaults)
+         Valine: {
+              appId: 'cemnMU6Yp5Hl109dYmgFiRsd-gzGzoHsz',
+              appKey: 'qp2tTbjtNgweLGPm0GWhjLJ0'},
         auto2top: true,
         coverpage: true,
         executeScript: true,
@@ -243,10 +246,12 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
       <!-- 一键复制插件 -->
-    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+      <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+      <script src="//unpkg.com/docsify-valine/dist/docsify-valine.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
       <!-- gitalk插件 -->
-    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script> -->
+    <!-- <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script> -->
   <script>
   window.$docsify = {
     loadSidebar: true,
@@ -258,7 +263,7 @@
     sidebarDisplayLevel: 1, // set sidebar display level
   }
 </script>
-<script>
+<!-- <script>
   const gitalk = new Gitalk({
     clientID: 'c44a949ad87d62940d0d',
     clientSecret: 'cbdfb6b0157785e7f46d6ea6de22b85b5fc16e28t',
@@ -270,7 +275,7 @@
     distractionFreeMode: false
   })
   gitalk.render('gitalk-container')
-</script>
+</script> -->
 <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script> -->
 
 <!-- plugins -->

@@ -1,4 +1,6 @@
-## 一、深度优先搜索(DFS)+回溯
+# 搜索专题
+
+## 深度优先搜索(DFS)+回溯
 
 `DFS`是一种搜索的策略，简单来说就是一条路走到黑。当走到尽头之后就回退到上一个结点，继续一条路走到黑。回退的过程就叫做**回溯**。
 `DFS`一般采用**递归**的方式实现。<!--more-->
@@ -6,7 +8,7 @@
 > 对递归的详细讲解会在以后出一个独立的专题，小伙伴们可以期待一下噢！
 >
 > `DFS`可以用一个递归搜索树来形象描述，那这棵树长什么样子呢，小伙伴们继续往下看。
-> ![在这里插入图片描述](https://img-blog.csdnimg.cn/b46f5fe9bde34fbd907b714c6ea1284c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+> <img src="https://img-blog.csdnimg.cn/b46f5fe9bde34fbd907b714c6ea1284c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述" style="zoom:33%;" />
 > 事实上对所有的合法`DFS`求解过程都可以把它画成树的形式，死胡同就相当于叶子结点。分岔口就相当于非叶子结点。
 > 对某个DFS类型的题目，不妨把一些状态作为树的结点，问题就变得很直观了。
 >
@@ -17,7 +19,7 @@
 
 ***
 
-## 二、DFS模板
+## DFS模板
 
 > 在备战蓝桥杯的过程中记住一些算法模板还是非常重要滴。
 
@@ -51,9 +53,9 @@ void dfs()
 
 ***
 
-## 三、DFS经典例题
+## DFS经典例题
 
-### 1.模板题——迷宫问题
+### 模板题——迷宫问题
 
 [题目链接](https://www.luogu.com.cn/problem/P1605)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/76bfafbf85ae400bbf980124689c8b74.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
@@ -147,8 +149,7 @@ int ans;
 int sx, sy, fx, fy, l, r;
 //bool visited[N][N];
 int map[N][N];//map[i][j] == 1表示是障碍
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-bool check(int x, int y)//判断某点是否可以访问
+                                                                                       bool check(int x, int y)//判断某点是否可以访问
 {
     if (x < 1 || x > n || y < 1 || y > n) return false;
     if (map[x][y] || map[x][y] == 3 ) return false;//该点是障碍点或已经访问过，不能访问
@@ -194,7 +195,7 @@ int main()
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/f0d98badf856489392bc3a7bfad24d98.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-### 2.01背包问题(DFS暴力搜索)
+### 01背包问题(DFS暴力搜索)
 
 [题目链接](https://www.acwing.com/problem/content/2/)
 ![背包问题](https://img-blog.csdnimg.cn/597a9a9e51c24576a62a7ad2d74e9b21.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
@@ -254,11 +255,11 @@ int main()
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b9204460d99f411dae0c590f14f4196a.png)
 
 
-### 3.回溯——[USACO1.5]八皇后 Checker Challenge
+### 回溯——[USACO1.5]八皇后
 
 [题目链接](https://www.luogu.com.cn/problem/P1219)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/e0392de0426f4359962c51f77cf5484f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/d9ae3a9ad53f44418de0d2a2f06c8c4b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/d9ae3a9ad53f44418de0d2a2f06c8c4b.png)
 **题目分析**
 
 >八皇后问题是学习回溯很经典的例题，这道题是八皇后问题的扩展，N皇后问题。也就是棋盘的大小是任意的。
@@ -327,9 +328,9 @@ int main()
 }
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/c37e19018b064ee88491028af5bec829.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/c37e19018b064ee88491028af5bec829.png)
 
-### 4.递归实现排列型枚举
+### 递归实现排列型枚举
 
 [题目链接](https://www.acwing.com/problem/content/96/)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/93f1e3da7444452c827100778284df39.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
@@ -383,12 +384,12 @@ int main()
 }
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/de6462dec44d47daa0afa1023d8a0c89.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/de6462dec44d47daa0afa1023d8a0c89.png)
 
-### 5.递归实现组合型枚举
+### 递归实现组合型枚举
 
 [题目链接](https://www.acwing.com/problem/content/95/)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/e84e6dee11d64d5688a7e07c419aa54b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/e84e6dee11d64d5688a7e07c419aa54b.png)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/36278db485514eff94f4487f54653173.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
 **题目分析**
 组合和排列的最大区别就是组合不需要考虑顺序，也就是说`123`和`132`是一样的。
@@ -441,11 +442,11 @@ int main()
 }
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/353f2858c0d24affbfb1c9307427a79c.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/353f2858c0d24affbfb1c9307427a79c.png)
 
 ***
 
-## 四、剪枝思想
+## 剪枝思想
 
 前面也提到过剪枝的概念，现在详细说下剪枝这种东西。我们知道`DFS`时间复杂度是很高的，如果不进行一些优化的话，在数据很大的情况下很容易就爆`TLE`。这个时候我们就可以用剪枝这种东西来优化啦~
 在进行`DFS`的过程中对某条可以确定不存在解的分支采用直接剪短的策略。这样会大大降低计算量。一个搜索树剪掉一些分支就形象的叫它剪枝了。
@@ -453,7 +454,7 @@ int main()
 
 ***
 
-## 五、剪枝思想在DFS中的应用
+## 剪枝思想在DFS中的应用
 
 小伙伴们来回忆下01背包问题，我们是在选择完所有物品后才进行判断，看看背包总体积是否超过背包容量。是不是可以在选择的过程中就加入这一判断，这样就可以减少很多的计算量。当选第`index`件物品时，如果选上它那么背包的总体积就超出背包容量，我们一定不能选了。此时选第`index`件物品的分支就不可能存在解，直接剪掉。
 
@@ -519,13 +520,10 @@ void dfs(int index, int start)
 [C语言网蓝桥杯题库](https://www.dotcpp.com/oj/train/)
 [蓝桥杯练习系统](http://lx.lanqiao.cn/problemsets.page)
 [蓝桥杯官网题库](https://www.lanqiao.cn/problems/?sort=students_count&category_id=3)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/da7e876c11b741df8c7d3d5b71ab38f8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_12,color_FFFFFF,t_70,g_se,x_16)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/b811a601fe264db3988a7eca92347a1f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/df58c6e5577e47d5a9fd70ca73d21e06.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_11,color_FFFFFF,t_70,g_se,x_16)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/da7e876c11b741df8c7d3d5b71ab38f8.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/b811a601fe264db3988a7eca92347a1f.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/df58c6e5577e47d5a9fd70ca73d21e06.png)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/a799d7696df843f3b8a57695348148cc.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_11,color_FFFFFF,t_70,g_se,x_16)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/a799d7696df843f3b8a57695348148cc.png)
 
 > 这几个网站和书是我一直在用的，真心推荐给大家~
-
-美好的时光总是短暂的，又到了说再见的时候啦~一键三连支持一下吧！
-![在这里插入图片描述](https://img-blog.csdnimg.cn/174d4b7d8830426085d94f82fa74bd55.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center)
