@@ -5,7 +5,8 @@
     <title>Learning Blog</title>
     <link rel="icon" href="_media/favicon.ico" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" /> 
+    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />   -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
     <meta
       name="google-site-verification"
       content="6t0LoIeFksrjF4c9sqUEsVXiQNxLp2hgoqo0KryT-sE"
@@ -56,6 +57,7 @@
   </head>
 
   <body>
+    <!-- <div id="gitalk-container"></div> -->
     <div id="app">Loading ...</div>
     <script src="//cdn.jsdelivr.net/npm/docsify-plugin-carbon@1"></script>
     <script>
@@ -87,7 +89,7 @@
         coverpage: true,
         executeScript: true,
         loadSidebar: true,//将侧边栏隐藏掉，只显示文章的目录
-        loadNavbar: false,
+        loadNavbar: true,
         mergeNavbar: true,
         maxLevel: 4,
         subMaxLevel: 2,
@@ -201,12 +203,12 @@
                   vm.route.file;
               }
               var editHtml = '[:memo: Edit Document](' + url + ')\n';
-              return (
-                editHtml +
-                html +
-                '\n\n----\n\n' +
-                '<a href="https://docsify.js.org" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;"></a>'
-              );
+              // return (
+              //   editHtml +
+              //   html +
+              //   '\n\n----\n\n' +
+              //   '<a href="https://docsify.js.org" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;"></a>'
+              // );
             })
           },
         ],
@@ -214,6 +216,7 @@
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+    <!-- 语言高亮插件 -->
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-nginx.min.js"></script>
@@ -224,10 +227,13 @@
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
       <!-- 一键复制插件 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+      <!-- gitalk插件 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
   <script>
   window.$docsify = {
-    // loadSidebar: true,
+    loadSidebar: true,
     alias: {
       '/.*/_sidebar.md': '/_sidebar.md',
     },
@@ -235,6 +241,19 @@
     ...
     sidebarDisplayLevel: 1, // set sidebar display level
   }
+</script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'c44a949ad87d62940d0d',
+    clientSecret: 'cbdfb6b0157785e7f46d6ea6de22b85b5fc16e28t',
+    repo: 'Learning-Blog',
+    owner: 'xubenshan',
+    admin: ['xubenshan'],
+    // facebook-like distraction free mode
+    id: location.pathname,
+    distractionFreeMode: false
+  })
+  gitalk.render('gitalk-container')
 </script>
 <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script> -->
 

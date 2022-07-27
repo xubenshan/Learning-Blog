@@ -4,7 +4,8 @@
 * 站点搭建教程
 	* [docsfisy搭建教程](/docsify/docsify.md ) 
 * 数据结构与算法
-	* [搜索专题](/algorithm/search.md)
-	* [DP专题](/algorithm/DP.md)
-
-	   
+  * [搜索专题](/algorithm/search.md)
+  * [DP专题](/algorithm/DP.md)
+* Linux基础
+  * [Linux基础知识](#)
+  * [shell编程](#)
