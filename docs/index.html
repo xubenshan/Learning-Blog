@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <title>Learning Blog</title>
     <link rel="icon" href="_media/favicon.ico" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" /> 
     <meta
       name="google-site-verification"
       content="6t0LoIeFksrjF4c9sqUEsVXiQNxLp2hgoqo0KryT-sE"
@@ -84,8 +86,8 @@
         auto2top: true,
         coverpage: true,
         executeScript: true,
-        loadSidebar: false,//将侧边栏隐藏掉，只显示文章的目录
-        loadNavbar: true,
+        loadSidebar: true,//将侧边栏隐藏掉，只显示文章的目录
+        loadNavbar: false,
         mergeNavbar: true,
         maxLevel: 4,
         subMaxLevel: 2,
@@ -223,6 +225,21 @@
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
       <!-- 一键复制插件 -->
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script>
+  window.$docsify = {
+    // loadSidebar: true,
+    alias: {
+      '/.*/_sidebar.md': '/_sidebar.md',
+    },
+    subMaxLevel: 3,
+    ...
+    sidebarDisplayLevel: 1, // set sidebar display level
+  }
+</script>
+<!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script> -->
+
+<!-- plugins -->
+<script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
 
 
     <script>
