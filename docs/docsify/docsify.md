@@ -1,4 +1,4 @@
-# 安装docsify
+# **安装docsify**
 
 ## 安装docsify脚手架
 
@@ -42,7 +42,7 @@
 
 打开`http://localhost:3000`网址。
 
-# 推送到远程仓库
+# **推送到远程仓库**
 
 更新本地代码，执行`git push -u origin origin/master`。
 
