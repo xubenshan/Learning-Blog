@@ -15,9 +15,9 @@
   * [vue](#)
 * 编程语言
   	* [c](#)
-  	* [cpp](#)
-  	* [java](#)
-  	* [python](#)
+    * [cpp](#)
+    * [java](#)
+    * [python](#)
 * 工具
   * [git](#)
   * [typora](#)
