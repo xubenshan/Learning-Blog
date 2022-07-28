@@ -2,9 +2,10 @@
 
 ![logo](_media/icon.svg)
 
-# Learning Blog 
+# [Learning Blog](#) 
 
-> 学习过程的笔记整理
+> 笔记整理
 
-[GitHub](https://github.com/docsifyjs/docsify/)
+[GitHub](https://github.com/xubenshan/)
 [Get Started](README.md)
+

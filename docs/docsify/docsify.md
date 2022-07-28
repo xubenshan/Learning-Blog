@@ -48,10 +48,11 @@
 
 ### 本地代码修改后更新到远程仓库
 
-* `git add .`
+*   `git add .`
+*   `git commit -m "提示信息"`  
+*  `git push origin master`
 
-* `git commit -m "提示信息"`
 
-* `git push origin master`
 
-  
+
+

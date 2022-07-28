@@ -101,7 +101,7 @@
         loadSidebar: false,//将侧边栏隐藏掉，只显示文章的目录
         loadNavbar: true,
         mergeNavbar: true,
-        maxLevel: 4,
+        maxLevel: 3,//目录显示的最大级数
         subMaxLevel: 2,
         ga: 'UA-106147152-1',
         // matomo: {
@@ -249,6 +249,12 @@
       <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
       <script src="//unpkg.com/docsify-valine/dist/docsify-valine.min.js"></script>
       <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+      <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+
+<!-- plugins -->
+<!-- <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script> --> -->
+      <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script> -->
       <!-- gitalk插件 -->
     <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script> -->
     <!-- <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script> -->
@@ -258,7 +264,7 @@
     alias: {
       '/.*/_sidebar.md': '/_sidebar.md',
     },
-    subMaxLevel: 3,
+    subMaxLevel: 2,
     ...
     sidebarDisplayLevel: 1, // set sidebar display level
   }
@@ -357,6 +363,8 @@
   
       section.cover h1 {
           margin: 0;
+          /* color: #42b983; */
+
       }
   
       body>section>div.cover-main>ul>li>a {
