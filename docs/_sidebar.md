@@ -1,2 +1,1 @@
-<!-- docs/_sidebar.md -->
-
+- [**欢迎回家**](/README.md)
