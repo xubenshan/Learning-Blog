@@ -1,4 +1,4 @@
-* [首页](/)
+* [首页](/README.md)
 * 算法
 	* [搜索专题](/algorithm/search.md)
 	* [DP专题](/algorithm/DP.md)
@@ -7,7 +7,7 @@
 	* [shell脚本](#)
 * 数据库
 
-  * [mySql](#)
+  * [mySql](/database/mysql.md)
 * 前端开发
   * [html](#)
   * [css](#)

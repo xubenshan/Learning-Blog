@@ -1,4 +1,4 @@
-var sidebarTxt='- [**欢迎回家**](/README.md)\n';
+var sidebarTxt='- [**点击这里**](/README.md)\n';
 var path = require('path');
 var curPath = path.resolve('./');
 var baseDirArr = [];
