@@ -4,7 +4,7 @@
 
 ### 安装docsify脚手架
 
-默认已经安装`git`和`node`。
+默认已经安装`git`和`node`。	
 
 `win+R`运行命令行，输入`npm i docsify-cli -g`。若安装速度很慢，可以使用`npm`的淘宝镜像。
 
