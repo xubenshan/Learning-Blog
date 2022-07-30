@@ -56,7 +56,7 @@
 
 ## 个人域名绑定Github Pages
 
-
+![image-20220730105636312](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220730105636312.png)
 
 
 
