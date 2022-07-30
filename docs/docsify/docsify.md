@@ -1,6 +1,8 @@
-# **安装docsify**
+# **docsify教程**
 
-## 安装docsify脚手架
+## 安装docsify
+
+### 安装docsify脚手架
 
 默认已经安装`git`和`node`。
 
@@ -42,15 +44,17 @@
 
 打开`http://localhost:3000`网址。
 
-# **推送到远程仓库**
+## **推送到远程仓库**
 
-## 关联远程仓库
+### 关联远程仓库
 
-### 本地代码修改后更新到远程仓库
+本地代码修改后更新到远程仓库
 
 *   `git add .`
 *   `git commit -m "提示信息"`  
 *  `git push origin master`
+
+## 个人域名绑定Github Pages
 
 
 
