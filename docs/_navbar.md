@@ -21,7 +21,7 @@
     * [JAVA](#)
     * [python](#)
 * 工具
-  * [git](#)
+  * [git](/工具/Git学习笔记.md)
   * [typora](#)
   * [hexo](#)
   * [docsify](/docsify/docsify.md)
