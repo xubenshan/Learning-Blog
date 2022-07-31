@@ -63,9 +63,11 @@ Git是开源的，免费的，最初的Git是为辅助Linux内核开发的，来
 
 ## **Git的环境配置**
 
-> `git config --system --list`查看系统配置
+```bash
+git config --system --list查看系统配置
 
-> `git config --global --list`查看本地配置
+git config --global --list查看本地配置
+```
 
 使用Git前我们需要设置用户名和密码。
 
