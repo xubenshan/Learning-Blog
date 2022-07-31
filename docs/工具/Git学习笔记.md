@@ -103,6 +103,8 @@ Git是开源的，免费的，最初的Git是为辅助Linux内核开发的，来
 
 `git commit -m "add test.txt"` 将test文件提交到本地仓库；
 
+![image-20220731205156110](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220731205156110.png)
+
 至此，我们已经将创建的文件存储在本地仓库了，我们可以通过pull命令将本地仓库同步到远程仓库中。下面看具体的做法。
 
 ### 使用Github
@@ -120,12 +122,61 @@ github仓库就创建完成了，接下来我们要让远程仓库和本地仓�
 
 在test文件夹下运行命令 `git remote add origin git@github.com:xubenshan/test.git`。注意要将`xubenshan/test`换成你自己的用户名。否则你关联的就是我的远程库，你是无法将本地库推送上去的。
 
+![image-20220731204824909](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220731204824909.png)
 
+出现`unsafe repository`这种情况的话，运行git给你的解决方案即可。`git config --global --add safe.directory F:/test`。
 
+再次运行 `git remote add origin git@github.com:xubenshan/test.git`。这样就将本地库同远程库关联起来了。
+
+在GitHub官方文档里面，关联完成后，还要将当前分支`master`改成`main`。`master`可能跟黑人有关。对于我们来说改不改其实问题不大。我们就不改了，这样命令会少一些。
+
+执行命令`git push -u origin master`。这样就可以将本地仓库上传到远程库里面了。其中`origin`是远程库的名字，`master`是本地仓库的当前分支。
+
+需要注意的是第一次执行这个命令的时候需要加`-u`。Git会把本地的`master`分支内容推送到远程新的`master`分支，还会把本地的`master`分支和远程的`master`分支关联起来，在以后的推送或者拉取时就可以简化命令。直接执行`git push origin master`。
+
+![Snipaste_2022-07-31_21-31-53](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/Snipaste_2022-07-31_21-31-53.jpg)
+
+刷新`github`界面就能看到我们上传的test文件了·。
 
 ### 使用gitee
 
+先注册登录码云，完善个人的信息。
 
+设置本机绑定ssh公钥，实现免密码登录。
+
+```bash
+# 进入用户目录下的.ssh目录 C:\Users\86186\\.ssh
+# 生成ssh公钥
+ssh-keygen -t tsa
+```
+
+
+
+![Snipaste_2022-07-31_21-50-51](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/Snipaste_2022-07-31_21-50-51.jpg)
+
+生成完之后打开`id_rsa.pub`文件，将公钥粘贴到gitee里面。
+
+![image-20220731215659358](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220731215659358.png)
+
+添加成功！
+
+创建仓库，和GitHub类似，这里就不再重复了。
+
+然后我们在本地库使用命令`git remote add`把它和远程库关联起来。
+
+`git remote add origin git@gitee.com:xu-benshan/test.git`。
+
+之后的操作就和GitHub如出一辙了。`git push -u origin master`。
+
+### Git问题汇总
+
+在push的过程中，出现`error: failed to push some refs to 'gitee.com:xu-benshan/test.git`。解决方案参考[博客](https://blog.csdn.net/m0_43599959/article/details/108934056?ops_request_misc=&request_id=&biz_id=102&utm_term=failed%20to%20push%20some%20refs%20to%20%27g&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-108934056.142^v35^pc_rank_34&spm=1018.2226.3001.4187)
+
+`error: failed to push some refs to 'github.com:xubenshan/test.git`
+
+另一种原因：执行了`git branch -M main`，将`master`分支重命名为`main`。pull的时候要将`master`改成`main`。
+
+`git push -u origin main`
 
 ## **Git操作**
 
