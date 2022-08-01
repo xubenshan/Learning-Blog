@@ -30,6 +30,8 @@
 
 ## JavaScript
 
+[javascript学习笔记](/前端/javascript/Javascript学习笔记.md)
+
 ## Vue框架
 
 # **编程语言**
@@ -97,6 +99,8 @@ print ("hello world")
 # **工具**
 
 ## git
+
+[git学习笔记](/工具/Git学习笔记.md)
 
 ## typora
 
