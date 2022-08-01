@@ -15,7 +15,7 @@ Java和JavaScript基本上毫无联系，只是当时Java名气很高，然后Ja
 * 行内嵌入
 
 ```javascript
-
+<input 
 ```
 
 注释
@@ -209,20 +209,43 @@ console.log(num + '');//string
 * 转换成数字型
 
 ```javascript
+//parseInt() 转化成整数 
+var age = prompt('输入你的年龄');
+ console.log(parseInt(age)); 
+ console.log(parseInt('3.14'));//3
+ console.log(parseInt('3.94'));//3
+ console.log(parseInt('320px'));//320
+ console.log(parseInt('ym320px'));//NaN
 
+//parseFloat() 转化成浮点数
+ console.log(parseFloat('3.14'));//3.14
+
+//Number()
+  var num = '13';
+  console.log(Number(num));
+//隐式转换
+  console.log('12' - 0);
+  console.log('123' - '23');//100
+  console.log('123' * 1);//123
 ```
 
 
 
 * 转换成布尔型
 
+```javascript
+
+```
+
 ### 运算符
 
-### 流程控制
 
-#### 条件判断
 
-#### switch语句
+## 流程控制
+
+### 条件判断
+
+### switch语句
 
 ### 循环
 
