@@ -30,7 +30,7 @@
 
 ## JavaScript
 
-[javascript学习笔记](/前端/javascript/Javascript学习笔记.md)
+[javascript学习笔记](/前端/javascript/JavaScript学习笔记.md)
 
 ## Vue框架
 
