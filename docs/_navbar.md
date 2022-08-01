@@ -11,7 +11,7 @@
 * 前端开发
   * [html](#)
   * [css](#)
-  * [javascript](/前端/javascript/JavaScript.md)
+  * [javascript](/前端/javascript/JavaScript学习笔记.md)
   * [vue](#)
 * 编程语言
 
