@@ -113,7 +113,35 @@ git config --global --list
 
 ### 使用Github
 
-首先你要有一个Github账户。没有注册的小伙伴们可以先去注册一下。注册完成后点击右上角的加号，新建仓库 `New repository` 。
+首先你要有一个Github账户。没有注册的小伙伴们可以先去注册一下。
+
+由于本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，因此我们要进行一些必要的配置。
+
+创建SSH key。看一下用户目录下是否有.ssh文件夹，里面是否有`id_rsa`和 `id_rsa.pub`。没有的话就要执行下面的命令（之前没用过github或gitee的话一般是没有的）
+
+```bash
+# 进入用户目录下的.ssh目录 C:\Users\86186\\.ssh
+# 生成ssh公钥 右键git bash
+ssh-keygen -t tsa -C "youremail@example.com" //邮箱地址换成自己的
+```
+
+然后一路回车，使用默认值即可。执行完成后，.ssh文件夹下面就出现`id_rsa`和 `id_rsa.pub`文件，第一个是私钥，不能告诉别人；第二个是公钥。
+
+![image-20220801215656790](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220801215656790.png)
+
+打开公钥文件，将里面的内容复制下来。
+
+登录github，点击设置，找到"SSH and GPG keys" ，点击"New SSH key"。
+
+![image-20220801220445338](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220801220445338.png)
+
+将公钥内容复制到Key文本框中，title随便起个名字，点击`Add SSH key`。ssh key添加成功！
+
+输入 `ssh -T git@github.com `   若出现`You've successfully authenticated,but GithHub does not provide shell access`则证明已经连接上GitHub了。
+
+接下来就该创建一个远程仓库了！
+
+点击右上角的加号，新建仓库 `New repository` 。
 
 <img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220731200551687.png" alt="image-20220731200551687" style="zoom:67%;" />
 
@@ -163,11 +191,19 @@ ls
 
 之后我们就可以将本地的文件通过`git add` `git commit`  `git push`命令上传到远程仓库。注意push的时候不是`master`而是`main`。这是因为clone的时候自动将本地的分支命名为`main`。	
 
-> Git支持多种协议，默认的`git://`使用ssh，但也可以使用`https`等其他协议。	
+> Git支持多种协议，默认的`git://`使用ssh，但也可以使用`https`等其他协议。只不过`https`速度比较慢。	
 
 ![image-20220801072319285](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220801072319285.png)
 
+> 其他常用的git命令
 
+```bash
+# 查看远程库信息
+git remote -v
+
+# 删除远程库 （只是解除本地库与远程库的关系，不是物理上的删除远程库。要想真的删除远程库，必须在github上面操作）
+git remote rm <name>
+```
 
 ### 使用gitee
 
@@ -214,11 +250,19 @@ ssh
 
 ### 版本管理
 
+
+
 ### 分支管理
+
+
 
 ### 标签管理
 
-### 自定义Git
+
+
+### 搭建git服务器
+
+
 
 ## **使用vscode操作Git**
 

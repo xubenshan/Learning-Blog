@@ -1,3 +1,5 @@
+
+
 # **docsify教程**
 
 ## 安装docsify
@@ -56,7 +58,34 @@
 
 ## 个人域名绑定Github Pages
 
+* 首先我们找到自己的Github pages的IP地址。
+
+```bash
+ping 用户名.github.io
+```
+
+![image-20220802170121711](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220802170121711.png)
+
+
+
+* 在阿里云上注册一个域名，我注册的是`.top`结尾的，比较便宜，适合做学习用。
+* 注册完域名，并且实名认证通过后，打开控制台，找到域名解析，点击解析设置。
+
+
+ ![image-20220802170712280](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220802170712280.png)
+
+添加两个记录，如下图。
+
+<img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220802170912121.png" alt="image-20220802170912121" style="zoom: 50%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220802171020113.png" alt="image-20220802171020113" style="zoom:50%;" />
+
+* 打开GitHub，找到你的博客suo'za
+
+
 ![image-20220730105636312](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220730105636312.png)
+
+
 
 
 
