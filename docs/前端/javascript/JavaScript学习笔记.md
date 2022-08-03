@@ -1,3 +1,5 @@
+
+
 # JavaScript学习笔记
 
 > 2022年8月1号开始学习Javascript
@@ -368,7 +370,7 @@ var res = num < 10 ? '0' + num : num;
 console.log(res);
 ```
 
-### switch语句
+### `switch`语句
 
 ```javascript
 //switch(表达式) {
@@ -434,7 +436,7 @@ var num = prompt('请输入一个数：');
 
 ### 循环
 
-* `for`循环
+#### `for`循环
 
 ```javascript
 for (初始状态; 循环条件; 计数器变量增或减 ) {
@@ -540,6 +542,8 @@ for (初始状态; 循环条件; 计数器变量增或减 ) {
 		console.log(str);
 ```
 
+
+
 > 断点调试的方法 debug
 >
 > 按F12打开开发者工具，选择`Sources`项，就能看到我们本地的源代码了。
@@ -553,7 +557,7 @@ for (初始状态; 循环条件; 计数器变量增或减 ) {
 
 
 
-* `while`循环
+#### `while`循环
 
 ```javascript
 while循环 一定要防止死循环
@@ -578,31 +582,215 @@ while (i <= 100) {
 	}
 console.log(sum);
 //弹出提示框，你好吗，如果输入我好，就提示结束，否则，一直询问
-var ans = prompot('你好吗');
-while (ans != '我好') {
-   ans = prompot('你好吗');
+var ans = prompt('你好吗');
+while (ans !== '我好') {
+   ans = prompt('你好吗');
 }
+alert ('回答正确');
 ```
 
 
 
-* `do while`循环
+#### `do while`循环
+
+```javascript
+do {
+    循环体
+} while (条件表达式)
+    先执行一次循环体，再去进行条件判断，为真就继续循环
+    //案例 打印一个人的一生，从1岁到100岁
+    var i = 1;
+    do {
+        console('我今年' + i + '岁了');
+        i++;
+    } while (i <= 100)
+    // 计算1~100之间所有整数的和
+    var sum = 0;
+	var i = 1;
+	do {
+        sum += i;
+        i++;
+    } while (i <= 100)
+    console.log (sum);
+	//弹出提示框，你好吗，如果输入我好，就提示结束，否则，一直询问
+	do {
+        var ans = prompt('你好吗');
+    } while (ans !== '你好')
+        alert('回答正确');
+```
 
 
 
 * `continue`和`break`
 
-  
+  ```javascript
+  continue是跳出本次循环，继续执行下次循环。
+  //求1~100之间，除了能被7整除之外的整数和
+  var sum = 0;
+  for (var i = 1; i <= 100; i++) {
+      if (i % 7 == 0) {
+          continue;
+      }
+      sum += i;
+      console.log(sum);
+  }
+  `break`是跳出整个循环。不再执行该循环
+  多层循环时，只能跳出当前层的循环
+  ```
 
-## 数组
+  ```javascript
+  //综合案例
+  里面存有100块钱，如果存钱，就用输入钱数加上先存的钱数，之后弹出显示余额提示框
+  如果取钱，就减去取得钱数，之后弹出余额提示框
+  如果显示余额，就输出余额
+  如果退出，就弹出退出信息提示框
+  		var sum = 100;
+          var ans = prompt('请输入你要的操作:' + '\n1.存钱' + '\n2.取钱' + '\n3.显示余额' + '\n4.退出');
+          while (ans != 4) {
+              if (ans == 1) {
+                 var ans1 = prompt('请输入你存的钱数');
+                 sum = ans1 - 0 + sum;
+                 alert('你现在的钱数为:' + sum);
+                 
+              }
+              if (ans == 2) {
+                  var ans2 = prompt('请您输入取的钱数');
+                  if (sum >= ans2) {
+                      sum = sum - ans2;
+                  alert('你现在的钱数为:' + sum); 
+                  } else {
+                      alert('你的余额不足');
+                  }
+              }
+              if (ans == 3) {
+                  alert('余额为：' + sum);
+              } 
+              ans = prompt('请输入你要的操作:' + '\n1.存钱' + '\n2.取钱' + '\n3.显示余额' + '\n4.退出');
+              
+          }
+         alert ('你已经退出，请重新登陆');
+  ```
+
+## **数组**
+
+> 数组可以把一组相关的数据存放在一起，并且可以很方便的访问它们。
+
+```javascript
+// 创建数组
+1. new
+ var arr = new Araay();
+2. 利用数组字面量
+ var arr = [];
+ var arr1 = [1, 2, 3];
+ var arr2 = [1, 'xu', true];//数组中的元素可以是任意数据类型。
+// 遍历数组 数组下标从0开始 所谓的遍历数组就是说将数组中的元素依次访问一遍
+var arr = [1, 2, 3];
+for (var i = 0; i < arr.length; i++) { //变量名.length动态获取数组的长度
+    console.log(arr[i]);
+}
+// 求数组的最大值
+		var arr = [1, 2, 3, 4, 56, 45];
+        var max = arr[0];
+        for (var i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        console.log(max);
+// 数组转化为分割字符串
+		var arr = ['xu', 'ben', 'shan'];
+        var str = '';
+        var temp = '|';
+        for (var i = 0; i < arr.length; i++ ) {
+            str = str + arr[i] + temp;
+        }
+        console.log(str);   //xu|ben|shan|
+
+// 数组新增元素 
+ 索引号增加元素
+	    var arr = ['xu', 'ben', 'shan'];
+        console.log(arr[3]);// undefined
+        arr[3] = 'blog';
+        console.log(arr[3]);// blog
+        console.log(arr.length);// 4
+// 数组存放1~10个值
+		var arr = [];
+		for (var i = 0; i < 10; i++) {
+   		 	arr[i] = i + 1;
+			console.log(arr[i]);
+		} // 1 2 3 4 5 6 7 8 9 10
+
+//将数组[2, 0, 6, 1, 77, 0, 25, 7]中大于等于10的元素选出来，放入新数组。
+	   var arr = [2, 0, 6, 1, 77, 0, 25, 7];
+       var newarr = [];
+       var j = 0;
+       for (var i = 0; i < arr.length; i++) {
+        if (arr[i] > 10) {
+            newarr[j] = arr[i];
+            j++;
+        }
+       }
+       console.log(newarr);
+法二：不用引进新变量
+ var arr = [2, 0, 6, 1, 77, 0, 25, 7];
+       var newarr = [];
+       for (var i = 0; i < arr.length; i++) {
+        if (arr[i] > 10) {
+            newarr[newarr.length] = arr[i];
+        }
+       }
+       console.log(newarr);
+// 删除数组指定元素 （数组去重）
+// 将数组[2, 0, 6, 1, 77, 0, 52, 0, 25, 7]中的0去除掉，形成一个不含0的新数组。
+	   var arr = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+       var newarr = [];
+       for (var i = 0; i < arr.length; i++) {
+            if (arr[i]) {
+                newarr[newarr.length] = arr[i];
+            }
+       }
+       console.log(newarr);
+
+//翻转数组
+	   var arr = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+       var newarr = [];
+       for (var i = arr.length - 1; i >= 0; i--) {
+            newarr[newarr.length] = arr[i];
+       }
+		console.log(newarr);
+```
+
+> 在JavaScript中，数组下标越界，不会报错，访问越界的元素会显示undefined。
+
+**冒泡排序**
+
+```javascript
+var arr = [5, 3, 7, 2, 1];
+for (var i = 1; i < arr.length; i++) {
+    for (var j = 0; j < arr.length - i; j++) {
+        if (arr[j] > arr[j + 1]) {
+			var temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
+        }
+    }
+}
+console.log(arr);
+```
+
+## **函数**
+
+> 函数就是封装一段可以重复使用的代码块， 提高代码复用。
+
+```javascript
+//函数使用分两步 声明函数和调用函数
+```
 
 
 
-## 函数
 
 
-
-## 作用域
+## **作用域**
 
 
 
@@ -610,15 +798,19 @@ while (ans != '我好') {
 
 
 
-## DOM
+## 正则表达式
 
 
 
-## BOM
+## **DOM**
 
 
 
-## jQuery
+## **BOM**
+
+
+
+## **jQuery**
 
 
 
