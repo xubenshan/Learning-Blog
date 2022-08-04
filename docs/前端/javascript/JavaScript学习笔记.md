@@ -784,13 +784,178 @@ console.log(arr);
 
 ```javascript
 //函数使用分两步 声明函数和调用函数
+声明函数有两种方式：
+1.关键字function声明函数 命名函数
+function 函数名（参数1，参数2...）{
+		函数体
+}
+函数名();
+2.函数表达式 匿名函数
+var 变量名 = function(参数1， 参数2...){函数体};
+变量名();
+函数只有调用的时候才被执行
+//形参和实参
+ 形参 函数声明时的参数
+ 实参 函数调用时的参数
+//return返回
+1. return只能返回一个值，如果用逗号隔开，以最后一个值为准。要返回多个值的时候可以用数组
+2. 函数无return时，默认返回undefined。
+3. return后面的语句不会被执行
+//arguments的使用
+当我们不确定有多少个参数传递的时候，可以用arguments。
+arguments是函数的一个内置对象，存储了传递过来的所有实参。
+arguments是一个伪数组，因此可以进行遍历。
+伪数组的特点：
+1.具有length属性
+2.可以通过索引号访问伪数组里面的元素
+3.没有数组的一些方法，如pop(),push()等
+        function fn() {
+            console.log(arguments); // [1,2,3]
+            console.log(arguments.length); // 3
+            console.log(arguments[2]);// 3
+       }
+       fn(1, 2, 3);
+//案例 利用函数求任意个数的最大值
+		function max() {
+            var res = arguments[0];
+            for (var i = 1; i < arguments.length; i++) {
+                if (arguments[i] > res) {
+                    res = arguments[i];
+                }
+            }
+            return res;
+        }
+        console.log(max(1, 5, 3)); // 5
+		console.log(max(2,4,1,6,7)); // 7
+// 利用函数封装的方式，翻转任意一个数组
+		function reverse(arr) {
+            var newArr = [];
+            for (var i = arr.length - 1 ; i >= 0; i--) {
+                newArr[newArr.length] = arr[i];
+            }
+            return newArr;
+        }
+        console.log(reverse([2, 3, 4, 5]));
+// 函数封装冒泡排序
+	function sort(arr) {
+        for (var i = 1; i < arr.length; i++) {
+            for (var j = 0; j < arr.length - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    var temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+    console.log(sort([1, 2, 5, 3, 1, 8]));
+// 利用函数判断闰年 闰年：能被4整除并且不能被100整除，或者能被400整除
+		function isRunYear(year) {
+            var flag = false;
+            if (year % 4 == 0 && year % 100 || year % 400 == 0 ) {
+                flag = true;
+            } 
+            return flag;
+
+        }
+        console,log(isRunYear(2022));
+        console,log(isRunYear(2000));
+ 函数之间可以相互调用
+// 用户输入年份，输出当前年份2月份天数
+ 		 function isRunYear(year) {
+            var flag = false;
+            if (year % 4 == 0 && year % 100 || year % 400 == 0 ) {
+                flag = true;
+            } 
+            return flag;
+
+        }
+        function backDay() {
+        var year = prompt('请输入一个年份');
+        if (isRunYear(year)) {
+            alert('该年份2月份有29天');
+        } else {
+            alert('该年份2月份有28天');
+        }
+    }
+        backDay();
+```
+
+## **作用域**
+
+```javascript
+// 作用域
+代码名字在某个范围内起作用和效果。目的提高程序的可靠性，减少命名冲突。
+全局作用域：整个<script>标签，或者单独的一个js文件
+局部作用域：在某个函数内部有效
+	   var num = 10;// 全局变量 作用域是全局作用域
+       function fn() {
+        var num = 20;
+            num1 = 30;//注意在函数内部直接赋值没有声明的变量也是全局变量（不建议使用）
+        console.log(num);// 局部变量 作用域是局部作用域
+       }
+       fn();// 20
+       console.log(num);// 10  
+	   console.log(num1);// 30
+// 全局变量 只有浏览器关闭之后才被销毁，比较占内存
+// 局部变量 当含局部变量的代码块执行完毕后，就被销毁
+// 作用域链 内部函数访问外部变量采用就近原则
+	   var num = 10;
+       function fn() {
+        var num = 20;
+        function fn1() {
+            console.log(num);// 20
+        }
+        fn1();
+       }
+       fn();
+```
+
+## **预解析**
+
+```javascript
+// 解释器运行js分为两步：预解析和代码执行
+// 1.预解析 js引擎会将js里面所有的var还有function提升到当前作用域的最前面。
+// 2.代码执行 从上到下按顺序执行代码
+// 3.预解析分为变量预解析和函数预解析
+变量预解析（变量提升） 把所有的变量声明提升到当前作用域的最前面，不提升赋值操作。
+console.log(num);
+var num = 10;
+//上述代码先进行预解析，将变量声明提升到前面去。变成：
+var num;
+console.log(num);
+num = 10;
+显然输出为 undefined
+函数预解析（函数提升） 把所有的函数声明提升到当前作用域的最前面，不调用函数。
+fn();
+function fn() {
+	console.log(11);
+}
+//进行预解析，将函数声明提升到前面。变成：
+function fn(){
+    console.log(11);
+}
+fn();
+//显然输出为11.
+fn();
+var fn = function(){
+    console.log(11);
+}//该程序会报错，因为预解析后变成：
+var fn;
+fn();
+fn = function(){
+    console.log(11);
+}//显然fn还未赋值，就进行使用，会报错
+//因此我们在利用函数表达式使用函数时，要先进行声明，才可以调用。
+
+```
+
+```javascript
+// 案例
 ```
 
 
-
-
-
-## **作用域**
 
 
 
@@ -807,6 +972,10 @@ console.log(arr);
 
 
 ## **BOM**
+
+
+
+## ES6新特性
 
 
 
