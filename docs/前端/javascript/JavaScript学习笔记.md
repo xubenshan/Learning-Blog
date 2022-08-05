@@ -947,23 +947,66 @@ fn();
 fn = function(){
     console.log(11);
 }//显然fn还未赋值，就进行使用，会报错
-//因此我们在利用函数表达式使用函数时，要先进行声明，才可以调用。
+//因此我们在利用函数表达式使用函数时，要先进行声明，才可以调用。在利用关键词function声明函数时，调用和声明顺序无所谓。
 
 ```
 
 ```javascript
-// 案例
+// 案例 1
+      var num = 10;
+       fun();
+       function fun() {
+        console.log(num);
+        var num = 20;
+       } // undefined
+预解析之后变成：
+var num;
+function fun() {
+    var num;
+    console.log(num);
+    num = 20;
+}
+num = 10;
+fun();
+显然最后输出undefined
+// 案例 2
+ 	   var num = 10;
+       function fun() {
+        console.log(num);
+        var num = 20;
+        console.log(num);
+       }
+       fun(); //undefined 20
+预解析之后变成：
+var num;
+function fun() {
+	var num;
+	console.log(num);
+    num = 20;
+    console.log(num);
+}
+fun();
+显然最后输出undefined 20
+// 案例 3 经典
+	   f1();
+       console.log(c);
+       console.log(b);
+       console.log(a);
+       function f1() {
+        var a = b = c = 9;// 相当于 var a = 9;b = 9;c = 9 b,c当全局变量看，a为局部变量
+        console.log(a);
+        console.log(b);
+        console.log(c);
+       }
 ```
 
-
+![image-20220804211457981](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220804211457981.png)
 
 
 
 ## **对象**
 
 
-
-## 正则表达式
 
 
 
@@ -976,6 +1019,10 @@ fn = function(){
 
 
 ## ES6新特性
+
+
+
+## 正则表达式
 
 
 
