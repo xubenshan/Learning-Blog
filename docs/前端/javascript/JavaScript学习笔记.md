@@ -4,7 +4,7 @@
 
 > 2022年8月1号开始学习Javascript
 
-## 简介
+## **简介**
 
 JavaScript是一种解释型脚本语言，可以嵌入到HTML中，它会由浏览器进行执行。
 
@@ -33,7 +33,7 @@ Java和JavaScript基本上毫无联系，只是当时Java名气很高，然后Ja
 
 
 
-## 基本语法
+## **基本语法**
 
 ### 输入和输出语句
 
@@ -797,6 +797,14 @@ var 变量名 = function(参数1， 参数2...){函数体};
 //形参和实参
  形参 函数声明时的参数
  实参 函数调用时的参数
+ 形参和实参匹配问题：
+ 实参个数大于形参，只取到形参的个数
+ 实参个数小于形参，就会出现问题
+ 		function getSum(num1, num2) {
+            console.log(num1 + num2);
+        }
+        getSum(1);//实参个数小于形参 NaN num2为undefined 和数值型相加得到NaN
+        getSum(1, 2, 3);// 实参个数大于形参 3
 //return返回
 1. return只能返回一个值，如果用逗号隔开，以最后一个值为准。要返回多个值的时候可以用数组
 2. 函数无return时，默认返回undefined。
@@ -1006,15 +1014,291 @@ fun();
 
 ## **对象**
 
+> 对象是一个具体的事物。是一组无序的方法和属性的集合
+
+### 自定义对象
+
+```javascript
+// 创建对象的三种方式：
+1.利用字面量创建对象
+		var obj = {
+            uname: 'xbs',
+            sex: '男',
+            age: 19,
+            sayHi: function(){
+                console.log('nihao');
+            }
+        }
+        console.log(obj.uname);
+		console.log(obj['age']);
+		obj.sayHi();
+//注意事项：(1) 键值对的方式储存属性和方法 属性名:属性值 (2) 属性之间逗号隔开 (3)方法冒号跟的是一个匿名函数
+//调用对象的属性 obj.uname 或 obj['uname']
+//调用对象的方法 obj.sayHi();
+2.利用new object创建对象
+	var obj = new Object();//创建一个空对象
+	obj.uname = 'xbs';//追加属性和方法
+	obj.age = 18;
+	obj.sex = '男';
+	obj.sayHi = function(){
+        console.log('nihao');
+    }
+3.利用构造函数创建对象
+// 创建多个具有共性(具有相同的属性和方法)的对象，就需要函数将共性的东西抽象封装起来，称为构造函数。
+	function 构造函数名() {
+		this.属性名 = 属性值;
+        this.方法名 = 方法值
+    }
+	var obj = new 构造函数名();
+//(1) 构造函数首字母一般大写 (2) 实例化一个对象用new (3)构造函数不需要return，就可以返回对象
+	function Creat(name, age, sex) {
+        this.uname = name;
+        this.sex = age;
+        this.age = sex;
+        this.sayHi = function(sing){
+            console.log(sing);
+        }
+    }
+    var obj = new Creat('xbs', 19, 'nan');
+	obj.sayHi('sayhi');
+    console.log(typeof obj);// object
+    console.log(obj.uname);// xbs
+//构造函数和对象的区别
+对象是一个具体的存在，特指某一个；构造函数是一个抽象的概念，泛指某一大类
+利用构造函数创建对象的过程就叫做对象的实例化。
+//遍历对象
+for ..in ..
+	var obj = new Object();//创建一个空对象
+	obj.uname = 'xbs';//追加属性和方法
+	obj.age = 18;
+	obj.sex = '男';
+	obj.sayHi = function(){
+        console.log('nihao');
+    }
+
+    for (var k in obj) {
+        console.log(k);// 得到属性名
+        console.log(obj[k]);// 得到属性值
+    }
+
+```
+
+> new关键字在构造函数中的执行过程
+>
+> 1. 在内存中创建一个空对象
+>
+> 2. this指向当前创建的空对象
+>
+> 3. 执行构造函数的代码，给对象添加属性和方法
+>
+> 4. 返回这个对象
+
+### 内置对象
+
+> js中的对象分成三种：自定义对象 内置对象 浏览器对象
+>
+> 内置对象：js语言自带的对象，它提供一些必要的属性和方法给开发者。
+
+#### Math对象
+
+```javascript
+//Math不是一个构造函数，可以直接使用属性和方法，不需要new一个对象
+//最大值 最小值 PI
+	console.log(Math.PI);// 3.141592653589793
+    console.log(Math.max(1, 3, 2));// 3
+    console.log(Math.min(1, 4, 0));// 0
+    console.log(Math.max(1, 4, 'xu'));// NaN    
+    console.log(Math.max());// -Infinity	
+//案例 利用对象封装数学对象，里面有最大值 最小值 PI
+var myMath = {
+        PI: 3.14159,
+        max: function() {
+            var max = arguments[0];
+            for (var i = 1; i < arguments.length; i++) {
+                if (arguments[i] > max) {
+                    max = arguments[i];
+                }
+            }
+            return max;
+        },
+        min: function() {
+            var min = arguments[0];
+            for (var i = 1; i < arguments.length; i++) {
+                if (arguments[i] < min) {
+                    min = arguments[i];
+                }
+            }
+            return min;
+        }
+    }
+    console.log(myMath.PI);// 3.14159
+    console.log(myMath.max(1, 2 ,3));// 3
+    console.log(myMath.max(1, 5 ,3));// 5
+    console.log(myMath.min(1, 2 ,3));// 1
+//绝对值 向下取整 向上取整 四舍五入
+	console.log(Math.abs(-12)); // 12 绝对值
+    console.log(Math.floor(1.2));// 1
+    console.log(Math.floor(1.5));// 1
+    console.log(Math.floor(1.8));// 1
+    console.log(Math.floor(-1.2));// -2
+	console.log(Math.ceil(1.3));// 2向上取整 往大了取
+    console.log(Math.ceil(1.7));// 2
+    console.log(Math.round(1.5));// 2
+    console.log(Math.round(-1.5));// -1 注意这个
+    console.log(Math.round(-1.8));// -2
+//Math随机数方法
+Math.random() //返回[0,1)中的随机数 ，没有参数
+Math.floor(Math.random() * (max - min + 1)) + min// 得到两个整数之间的随机整数，包含这两个整数。
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min// 得到两个整数之间的随机整数，包含这两个整数。
+   } 
+   console.log(getRandom(0, 10));// 得到0~10之间的一个整数
+// 案例 随机点名
+var arr = ['xbs', '小明', '小红', '小黄', '小绿'];
+var rad = getRandom(0, 4);
+console.log(arr[rad]);
+// 猜数字游戏
+程序随机生成一个1~10之间的数字，并让用户输入一个数字：
+如果大于该数字，就提示，数字大了；
+如果小于该数字，就提示，数字小了；
+如果等于该数字，就提示猜对了。
+var rad = getRandom(1, 10);
+   while (true) {
+    var res = prompt('请输入一个1~10的数：');
+    if (res == '') {
+        alert('不要试图卡bug');
+    }
+    else if (rad < res) {
+        alert('输入的数大了');
+    } else if (rad > res) {
+        alert('输入的数字小了');
+    } else if(rad == res) {
+        alert('猜对了');
+        break;
+    } else {
+        alert('你输入的数格式不正确');
+    }
+   }
+// 限制用户猜的次数
+var rad = getRandom(1, 10);
+   var count = 10;
+   while (count--) {//只能猜10次，第11次时主动退出循环。
+    var res = prompt('请输入一个1~10的数：');
+    if (res == '') {
+        alert('不要试图卡bug');
+    }
+    else if (rad < res) {
+        alert('输入的数大了');
+    } else if (rad > res) {
+        alert('输入的数字小了');
+    } else if(rad == res) {
+        alert('猜对了');
+        break;
+    } else {
+        alert('你输入的数格式不正确');
+    }
+   }
+//当count--为0时，循环主动退出，此时count=-1;
+   if (count == -1) {
+   alert('你的次数已经用光了');
+   }
+
+```
+
+#### 日期对象
+
+```javascript
+//通过构造函数来创建日期对象
+var arr = new Date();
+1.无参数，返回系统的当前时间
+2.有参数 数字型 2022, 8, 05 字符串型 '2022-8-5 21:20:20'
+	var date = new Date();
+    console.log(date);
+    var date1 = new Date(2022, 8, 05);
+    console.log(date1);// 返回的是7月不是八月
+    var date2 = new Date('2022-8-5 21:20:20');
+    console.log(date2);
+3.日期的格式化
+//格式化年月日
+var date = new Date();
+    console.log(date.getFullYear());// 2022
+    console.log(date.getMonth() + 1);// 7 ,月份是从0~11，要显示正确的月份，应+1
+    console.log(date.getDate());// 5
+    console.log(date.getDay());// 5 星期日显示是0
+    var arr = ['星期天','星期一','星期二','星期三','星期四','星期五','星期六'];
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    var dates = date.getDate();
+    var day = date.getDay();
+    console.log('今天是: ' + year + '年' + month + '月' + dates + '日 ' + arr[day]); // 今天是: 2022年7月5日 星期五
+//格式化时分秒
+	var date = new Date();
+	console.log(date.getHours());//时
+    console.log(date.getMinutes());//分
+    console.log(date.getSeconds());//秒
+    //封装一个函数，返回当前的时分秒 08:09:01
+   function getTime() {
+        var time = new Date();
+        hour = time.getHours();
+       hour = hour < 10 ? '0' + hour : hour;
+        minutes = time.getMinutes();
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        second = time.getSeconds();
+        second = second < 10 ? '0' + second : second;
+        return hour + ':' + minutes + ':' + second;
+   }
+   console.log(getTime());
+// 获取日期的总的毫秒数(时间戳)
+距离1970.1.1过了多少毫秒数
+1. 通过valueof() getTime()
+	var date = new Date();
+	console.log(date.valueOf());
+	console.log(date.getTime());
+2. 常用的写法
+	var date = +new Date();
+	console.log(date);
+3. H5新增的写法
+	console.log(Date.now());
+//案例 倒计时
+思路：倒计时就是将来的时间减去现在的时间。可以用时间戳进行相减，然后将得到的结果转化成时分秒
+	function countTime(time) {
+        var nowTime = +new Date();
+        var inputTime = +new Date(time);
+        var times = (inputTime - nowTime) / 1000;
+        var d = parseInt(times / 60 / 60 / 24);//得到天数
+        d = d < 10 ? '0' + d : d;
+        var h = parseInt(times / 60 / 60 % 24);//得到小时
+        h = h < 10 ? '0' + h : h;
+        var m = parseInt(times / 60 % 60);//得到分
+        m = m < 10 ? '0' + m :m;
+        var s = parseInt(times % 60);//得到秒
+        s= s < 10 ? '0' + s : s;
+        return d + '天' + h + '时' + m + '分' + s + '秒';
+    }
+    console.log(countTime('2022-8-5 22:25:00'));
+```
+
+#### 数组对象
+
+```javascript
+
+```
+
+#### 字符串对象
+
+```javascript
+
+```
+
+## Web API
 
 
 
-
-## **DOM**
-
+### **DOM**
 
 
-## **BOM**
+
+### **BOM**
 
 
 
