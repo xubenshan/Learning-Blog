@@ -12,14 +12,14 @@ Java和JavaScript基本上毫无联系，只是当时Java名气很高，然后Ja
 
 >  学习JavaScript我使用的是vscode编辑器。
 
-引入JavaScript有两种基本方式。
+引入JavaScript有三种基本方式。
 
 * 在`<head>..</head>`中添加`<script>..</script>`。
 * 新建一个`.js`文件，然后在HTML中引入该文件。`<script src="js文件的位置" type="text/javascript">...</script>`
-* 行内嵌入
+* 行内嵌入，直接写在元素里面
 
 ```javascript
-<input 
+<input type="button" value="点击" onclick="alert('你好')">
 ```
 
 注释
@@ -30,8 +30,6 @@ Java和JavaScript基本上毫无联系，只是当时Java名气很高，然后Ja
 /* */ 多行注释
 快捷键 shift+alt+A
 ```
-
-
 
 ## **基本语法**
 
@@ -1281,13 +1279,287 @@ var date = new Date();
 #### 数组对象
 
 ```javascript
+//数组创建的两种方式 字面量 new
+var arr = [];
+var arr1 = Array();//创建了一个空数组
+var arr2 = Array(2);//创建了一个长度为2的空数组
+var arr3 = Array(1,2)//创建数组[1,2]
+//检测是否为数组的两种方式 instanceof isArray()
+var arr = new Array(1,2);
+var arr1 = 'string';
+console.log(arr instanceof Array);// true
+console.log(arr1 instanceof Array);// false
+console.log(Array.isArray(arr));// true
+console.log(Array.isArray(arr1));// false
+//添加数组元素 
+//push末尾添加元素，返回数组的长度
+1. var arr = [1,2,3];
+	console.log(arr.push(4,5));//5
+	console.log(arr);// [1,2,3,4,5]
+//unshift()数组前面添加元素，返回数组的长度
+	var arr = [1,2,3];
+	console.log(arr.unshift(0,6));//5
+	console.log(arr);//[0,6,1,2,3]
+//删除数组元素 
+//pop删除数组的最后一个元素，返回删除的元素
+1. var arr = [1,2,3,4];
+   console.log(arr.pop());// 4
+   console.log(arr);// [1,2,3]
+//shift删除数组的第一个元素，返回删除的元素
+	var arr = [1,2,3,4];
+	console.log(arr.shift());//1
+	console.log(arr);//[2,3,4]
+//案例 筛选数组 有一个包含工资的数组[1500,1200,2000,2100,1800],要求将数组中工资超过2000的删除，剩余的放在新数组中。
+	var arr = [1500,1200,2000,2100,1800];
+	var newArr = [];
+	for (var i = 0; i < arr.length; i++) {
+        if(arr[i] < 2000) {
+            //newArr[newArr.length] = arr[i];
+            newArr.push(arr[i]);
+        }
+    }
+	console.log(newArr);
+//翻转数组 reverse()
+var arr = [3,2,1,4,2];
+arr.reverse();
+console.log(arr);// [2, 4, 1, 2, 3]
+//数组排序 sort
+ var arr = [3,5,1,7,4];
+ arr.sort();
+ console.log(arr);// [1, 3, 4, 5, 7]
+但是这个sort进行排序有些问题
+var arr = [1,12,23,21,4];
+arr.sort();
+console.log(arr);// [1, 12, 21, 23, 4] 出现问题，因为sort排序是按照ASCii码进行排序
+//正确写法
+var arr = [1,12,23,21,4];
+arr.sort(function(a,b) {
+    return a - b;//升序排序   降序排序  return b - a;
+});
+console.log(arr);// [1, 4, 12, 21, 23]
+//获取数组元素的索引
+1.indexOf(数组元素) 查找给定元素的第一个索引号，不存在则返回-1
+var arr = ['xbs','xu','xuben'];
+console.log(arr.indexOf('xbs'));//0
+2.lastIndexOf(数组元素) 查找给定元素的最后一个索引号，不存在则返回-1
+var arr = ['xbs','xu','xuben','xbs'];
+console.log(arr.lastIndexOf('xbs'));//3
+//案例 数组去重 有一个数组,['c','a','z','a','x','a','x','c','b'],要求去除数组中重复的元素
+思路：将原数组按顺序遍历，每访问一个元素，判断其有没有出现在新数组中，若有，则不添加到新数组，若没有，则添加到新数组中
+/*var arr = ['c','a','z','a','x','a','x','c','b'];
+var newArr = [];
+for  (var i = 0; i < arr.length; i++) {
+    if (newArr.indexOf(arr[i]) == -1) {
+        newArr.push(arr[i]);
+    }
+}
+console.log(newArr);*/
+封装一个去重函数
+function unique(arr) {
+    var newArr = [];
+    for  (var i = 0; i < arr.length; i++) {
+    if (newArr.indexOf(arr[i]) == -1) {
+        newArr.push(arr[i]);
+    }
+}
+ return newArr;   
+}
+var demo = unique(['c','a','z','a','x','a','x','c','b']);
+console.log(demo);
+//数组转化成字符串
+1.toString() 将数组转化成字符串，逗号隔开
+var arr = ['x','b','s'];
+console.log(arr.toString());// x,b,s
 
+2.join('分隔符') 将数组转化成字符串，分隔符隔开
+var arr = ['x','b','s'];
+console.log(arr.join('|'));// x|b|s
+//concat() 连接两个或多个数组
+var array1 = ['a', 'b', 'c'];
+var array2 = ['d', 'e', 'f'];
+var array3 = array1.concat(array2);
+console.log(array3);// ['a', 'b', 'c', 'd', 'e', 'f']
+//slice(begin,end) 截取数组 包括begin，不包括end 
+var arr = [1,2,3,4,5,6,7];
+console.log(arr.slice(0,3));// [1,2,3]
+//splice(begin,删除的个数) 删除数组的元素 返回由被删除的元素组成的一个数组
+var arr = [1,2,3,4,5,6,7];
+console.log(arr.splice(0,3));// [1,2,3]
+console.log(arr);// [4,5,6,7] 原数组发生改变
 ```
 
 #### 字符串对象
 
-```javascript
+> 基本包装类型
+>
+> 把基本数据类型包装成复杂数据类型
 
+```javascript
+var str = 'xbs';
+console.log(str.length);
+相当于
+var temp = new String('xbs');
+str = temp;
+temp = null;
+```
+
+```javascript
+//字符串不可变
+字符串里面的值不变，只是看上去变了，但其实是地址变了，内存中开辟一个新空间
+字符串中所有的方法都不会改变原字符串，会返回一个新字符串
+var str = 'xbs';
+console.log(str);//xbs
+str = 'xubenshan';
+console.log(str);//xubenshan
+//根据字符返回位置
+//indexOf(查找的元素，从索引号为多少开始查找)
+1.	var str = 'xubenshan';
+	console.log(str.indexOf('n'));//4
+	console.log(str.indexOf('n',5));//8
+	console.log(str.lastIndexOf('n'));//8
+
+//查找字符串'abcoefoxyozzopp'中所有o出现的位置以及次数
+思路：先查找到第一个o所在的位置，只要indexOf()不是-1，就索引值加1，一直查找。
+var str = 'abcoefoxyozzopp';
+var temp = str.indexOf('o');
+var count = 0;
+while (temp != -1) {
+    console.log(temp);
+    count++;
+    temp = str.indexOf('o', temp + 1);
+}
+console.log('出现的次数' + count);
+// 3 6 9 12 出现的次数为4
+
+//根据位置返回字符
+2.
+//charAt(index)
+var str = 'xubenshan';
+for (var i = 0; i < str,length; i++) {
+    console.log(str.charAt(i));
+}
+//charCodeAt(index) 返回字符的ASCii码
+var str = 'xubenshan';
+console.log(str.charCodeAt(0));// 120
+//str[index]
+var str = 'xubenshan';
+console.log(str[0]);// x
+// 案例 判断一个字符串'abcoefoxyozzopp'中出现次数最多的字符，并统计其次数。
+var str = 'abcoefoxyozzopp';
+var obj = {};
+for (var i = 0; i < str.length; i++) {
+    /*var temp = str.charAt(i);
+    if (obj[temp]) {
+        obj[temp]++;
+    } else {
+        obj[temp] = 1;
+    }*/
+    if (obj[str[i]]) {
+        obj[str[i]]++;
+    } else {
+        obj[str[i]] = 1;
+    }
+}
+var max = 0;
+var ch = '';
+for (var k in obj) {
+	if (obj[k] > max) {
+        max = obj[k];
+        ch = k;
+    }
+}
+console.log(ch, max);//o 4
+
+// 拼接和截取字符串
+concat(字符串1，字符串2..)
+var str1 = 'xbs';
+console.log(str1.concat('123'));// xbs123
+// substring(start,end) 从start位置开始截取到end位置，不取end
+var str = 'xubenshan';
+console.log(str.substring(0,3));//xub
+// 替换字符 replace('被替换字符'，'替换字符') 只替换第一个满足条件的字符
+案例 有一个字符串'abcoefoxyoxxopp' 要求把里面的所有o替换成*
+    思路：循环，每替换一次，将得到的新字符串代替原来的字符串，直到无法替换为止。
+	var str = 'abcoefoxyoxxopp';
+	var newstr = '';
+	while (str != newstr) {
+        newstr = str;
+        str = str.replace('o', '*');
+    }
+	console.log(str);
+//更简洁的写法
+	var str = 'abcoefoxyoxxopp';
+	while (str.indexOf('o') != -1) {//indexOf(字符)查找字符串中有没有这个字符，没有就返回-1
+        str = str.replace('o', '*');
+    }
+	console.log(str);
+//字符转化成数组
+split('分割符') join将数组转化成字符串
+ 	var str = 'blue, yellow, red';
+    console.log(str.split(','));
+// toUpperCase() 转换大写
+//  toLowerCaes() 转换小写
+```
+
+```javascript
+//综合案例 给定一个字符串 如“abaasdffggghhjjkkgfddsssss3444343”
+1.字符串的长度
+2.取出指定位置的字符，如0，3，5，9
+3.查找指定字符是否存在 i，c, b
+4.替换指定的字符 g替换22 ss替换b
+5.截取指定开始位置到结束位置的字符串 如取得1~5的字符串
+6.找出以上字符串中出现次数最多的字符和出现的次数
+```
+
+简单数据类型和复杂数据类型
+
+* 简单数据类型（值类型） 
+
+`string` `number` `boolean` `undefined` `null`
+
+存储到栈里面 ，里面直接开辟一个空间，存储简单数据类型的值
+
+```javascript
+// null类型返回的是一个空对象（注意）
+	var obj = null;
+    console.log(typeof obj);// object
+因此如果有一个变量我们打算存储为对象，但是现在不确定放什么，可以用null
+```
+
+* 复杂数据类型 （引用类型）
+
+通过`new`关键字创建的对象
+
+`Object` `Array`
+
+存储到堆里面，在栈里面开辟一个空间存放地址，通过这个地址指向堆里面的数据···
+
+**简单数据类型和复杂数据类型的传参问题**
+
+```javascript
+//简单数据类型传参
+function fn(a) {//实参x的值复制一份给形参，开辟另一个空间储存a的值10
+    a++;
+    console.log(a);
+}
+var x = 10;//在栈里面开辟一个空间，存储x的值10
+fn(x);//11
+console.log(x);//10
+值传参，形参不能改变实参
+//复杂数据类型
+function Person(name) {
+	this.name = name;
+}
+function f1(x) {
+    console.log(x.name);// xbs
+    x.name = 'xubenshan';
+    console.log(x.name);// xubenshan
+}
+var p = new Person('xbs');
+console.log(p.name);// xbs
+f1(p);//把引用类型的实参传给形参，就相当于将栈中存放的堆地址复制给形参，形参和实参保存的是同一个地址，操作的是同一个对象
+console.log(p,name);// xubenshan
+地址传递，形参可以改变实参
 ```
 
 ## Web API
