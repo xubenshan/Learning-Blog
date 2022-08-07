@@ -1,8 +1,4 @@
-
-
 # JavaScript学习笔记
-
-> 2022年8月1号开始学习Javascript
 
 ## **简介**
 
@@ -1448,7 +1444,7 @@ console.log(str[0]);// x
 var str = 'abcoefoxyozzopp';
 var obj = {};
 for (var i = 0; i < str.length; i++) {
-    /*var temp = str.charAt(i);
+    /*var temp = str.charAt(i);// 为什么不能用.来调用属性，必须用[]来调用
     if (obj[temp]) {
         obj[temp]++;
     } else {
@@ -1562,15 +1558,155 @@ console.log(p,name);// xubenshan
 地址传递，形参可以改变实参
 ```
 
-## Web API
+## **Web APIs**
+
+> `javascript`包括`js`的语法部分和`Web APIs`的`DOM`和`BOM`部分
+>
+> `API`就是预先封装好的接口（函数），可以直接使用，不用关心内部原理。
+
+### DOM
+
+##### 获取元素
+
+```javascript
+1. 通过id得到元素
+<div id="date">2022-8-7</div>
+    <script>
+        //页面加载是从上往下，因此script要写在div标签下面
+        // getElementById返回的是一个element对象,参数是字符串
+        var timer = document.getElementById('date');
+        console.log(timer);// <div id="date">2022-8-7</div>
+        console.log(typeof timer);// object
+        //console.dir 打印我们返回的元素对象，能更好的查看里面的属性和方法
+        console.dir(timer);
+    </script>
+2. 通过标签名获取
+<ul>
+        <li>知否知否应是绿肥红瘦1</li>
+        <li>知否知否应是绿肥红瘦2</li>
+        <li>知否知否应是绿肥红瘦3</li>
+        <li>知否知否应是绿肥红瘦4</li>
+        <li>知否知否应是绿肥红瘦5</li>
+    </ul>
+    <ol id="ols">
+        <li>生僻字1</li>
+        <li>生僻字2</li>
+        <li>生僻字3</li>
+        <li>生僻字4</li>
+        <li>生僻字5</li>
+    </ol>
+    <script>
+        var lis = document.getElementsByTagName('li');
+        console.log(lis);//  [li, li, li, li, li]
+        // 返回的是获取元素对象的集合，是一个伪数组
+        console.log(lis[0]);
+        for (var i = 0; i < lis.length; i++) {
+            console.log(lis[i]);
+        }
+        //若找不到这个标签，返回一个空的伪数组。
+        //element.getElementByTagName中的父元素必须是一个确定的元素。
+        var ols = document.getElementsByTagName('ol');
+        console.log(ols);// [ol]
+        // console.log(ols.getElementsByTagName('li'));//会报错
+        //正确写法
+        console.log(ols[0].getElementsByTagName('li'));//[li, li, li, li, li]
+        //常见的写法 给ol添加id属性
+        var ol = document.getElementById('ols');
+        console.log(ol.getElementsByTagName('li'));//[li, li, li, li, li]
+</script>
+3. H5新增获取元素方式 
+    <div class="box">盒子</div>
+    <div class="box">盒子</div>
+    <div id="nav">
+        <ul>
+            <li>首页</li>
+            <li>产品</li>
+        </ul>
+    </div>
+    <script>
+        //getElementsByClassName通过类名进行选择
+       var boxs = document.getElementsByClassName('box');
+       console.log(boxs);// [div.box, div.box]
+       //querySelector(选择器 必须加) 返回指定选择器的第一个元素对象
+       var firstBox = document.querySelector('.box');
+       console.log(firstBox);//<div class="box">盒子</div>
+       var nav = document.querySelector('#nav');
+       console.log(nav); 
+       var li = document.querySelector('li');
+       console.log(li);
+        //querySelectorAll(选择器) 返回指定选择器的所有元素对象
+        var boxs = document.querySelectorAll('.box');
+        console.log(boxs);// [div.box, div.box]
+    </script>
+4. 获取特殊标签 html body
+		//获取body标签
+        var body = document.body;
+        console.log(body);
+        //获取HTML标签
+        var html = document.documentElement;
+        console.log(html);
+```
+
+##### 事件基础
+
+```javascript
+// 事件 触发响应的一种机制
+// 事件三要素 
+事件源 被触发的对象
+事件类型 如何触发事件
+事件处理程序 通过一个函数赋值的方式完成触发
+	<button id="btn">才疏学浅的小熊</button>
+    </div>
+    <script>
+        //点击一个按钮，弹出对话框
+        var btn = document.getElementById('btn');
+        //鼠标点击
+        btn.onclick = function(){
+            alert('欢迎来到我的博客');
+        }
+    </script>
+// 执行事件的步骤
+1.获取事件源
+2.绑定事件
+3.添加事件处理程序
+<div>123</div>
+    <script>
+        //点击div控制台输出我被选中了
+        var divs = document.querySelector('div');
+        divs.onclick = function() {
+            console.log('我被选中了');
+        }
+    </script>
+```
+
+##### 操作元素
+
+```javascript
+// 改变元素的内容
+innerText innerHtml
+<button>点击显示时间</button>
+    <div>显示时间</div>
+    <script>
+        var btn = document.querySelector('button');
+        var divs = document.querySelector('div');
+        btn.onclick = function() {
+            divs.innerHtml = getTime();//getTime()显示当前时间，在日期对象那里有封装过
+        }
+    </script>//点击button，div里面的内容发生变化，显示当前的时间
+//innerText innerHtml区别
+		// innnerText不识别HTML标签 
+        var divs = document.querySelector('div');
+        divs.innerText = '<strong>你好</strong>';// <strong>你好</strong>
+        //innerHtml识别HTML标签 W3C标准
+        divs.innerHTML = '<strong>你好</strong>';// **你好**
+        // 这两个属性可以读写 innerText不保留换行和空格 innerHTML保留空格和换行
+//修改元素属性
+
+```
 
 
 
-### **DOM**
-
-
-
-### **BOM**
+### BOM
 
 
 
