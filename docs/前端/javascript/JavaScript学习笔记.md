@@ -1566,6 +1566,8 @@ console.log(p,name);// xubenshan
 
 ### DOM
 
+`df`
+
 ##### 获取元素
 
 ```javascript
@@ -1700,8 +1702,228 @@ innerText innerHtml
         //innerHtml识别HTML标签 W3C标准
         divs.innerHTML = '<strong>你好</strong>';// **你好**
         // 这两个属性可以读写 innerText不保留换行和空格 innerHTML保留空格和换行
-//修改元素属性
+//修改元素属性 src href title alt
+	<button id="pic1">pic1</button>
+    <button id="pic2">pic2</button>
+    <img src="pic1.png" alt="" title="图片一">
+    <script>
+        var pic1 = document.getElementById('pic1');
+        var pic2 = document.getElementById('pic2');
+        var img = document.querySelector('img');
+        // 注册事件
+        pic2.onclick = function() {
+            img.src = "pic2.png";
+            img.title = "图片二";
+        }
+        pic1.onclick = function() {
+            img.src = "pic1.png";
+            img.title = "图片一";
+        }
+	</script>
+//案例 分时显示不同的图片，同时显示不同的问候语
+上午打开页面，显示上午好，显示上午的图片
+下午打开页面，显示下午好，显示下午的图片
+晚上打开页面，显示晚上好，显示晚上的图片
+<img src="pic1.png" alt="">
+    <div>上午好</div>
+    <script>
+        var img = document.querySelector('img');
+        var div = document.querySelector('div');
+        //得到当前的时间
+        var date = new Date();
+        var hour = date.getHours();
+        if (hour < 12) {
+            img.src = 'pic1.png';
+            div.innerHTML = '上午好';
+        } else if (hour < 19) {
+            img.src = 'pic2.png';
+            div.innerHTML = '下午好';
+        } else {
+            img.src = 'pic3.png';
+            div.innerHTML = '晚上好';
+        }
+</script>
+//表单元素的属性操作 type value disabled
+    <button>按钮</button>
+    <input type="text" value="请输入内容">
+    <script>
+        var btn = document.querySelector('button');
+        var input = document.querySelector('input');
+        //注册事件
+        btn.onclick = function () {
+            //表单里面的文字内容通过value实现
+            input.value = '我点击了按钮';
+            //被禁用，按钮不能再点击
+            // btn.disabled = 'true'; 
+            this.disabled = 'true';
+            //this指向的是该事件函数的调用者    
+        }
+    </script>
+// 仿京东显示密码
+    <div class="box">
+        <label for="">
+            <img src="images/close.png" alt="" id="eye">
+        </label>
+        <input type="password" name="" id="pwd">
+    </div>
+    <script>
+        var img = document.getElementById('eye');
+        var pass = document.getElementById('pwd');
+        var flag = 0;
+        img.onclick = function() {
+            if (!flag){
+            pass.type = 'text';
+            img.src = 'images/open.png';
+            flag = 1;
+        } else {
+            pass.type = 'password';
+            img.src = 'images/close.png';
+            flag = 0;
+        }
+    }
+    </script>
+//通过style来修改元素的样式属性 样式比较少，使用比较方便
+// 显示隐藏文本框内容 
+    <style>
+        input {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" value="手机">
+    <!-- <input type="text" placeholder="手机"> -->
+    <script>
+        var text = document.querySelector('input');
+        // //获得焦点
+        // text.onfocus = function() {
+        //     this.placeholder = ' ';
+        //     this.style.color = '#333';
+        // }
+        // //失去焦点
+        // text.onblur = function() {
+        //     this.style.color = '#999'
+        //     this.placeholder = '手机';
+        // }
+        text.onfocus = function() {
+            if (this.value === '手机') {
+                this.style.color = '#333';
+                this.value = ' ';
+            }
+            
+        }
+        text.onblur = function() {
+            if (this.value === '') {
+                this.style.color = '#999';
+                this.value = '手机';
+            }
+        }
+    </script>
+// 使用className修改样式属性 element.className
+当前元素的类名改成className
+    <style>
+        .pre {
+            background-color: #333;
+            font-size: 35px;
+            width: 100px;
+            height: 100px;
+        }
+        .change {
+            background-color: purple;
+            font-size: 25px;
+            margin-top: 100px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="pre">文字</div>
+    <script>
+        var div = document.querySelector('div');
+        div.onclick = function() {
+            // 通过修改元素的类名来更改元素的样式，适合样式多的情况
+            //如果想要保留原来的类名，可以这样写 多类名选择器
+            this.className = 'pre change';
+            // this.className = 'change';
+        }
+    </script>
+//密码框格式提示错误信息
+    <style>
+        div {
+            width: 600px;
+            margin: 100px auto;
+        }
+        .message {
+            display: inline-block;
+            font-size: 12px;
+            color: #999;
+            padding-left: 20px;
+            background: url(images/mess.png) no-repeat left center;
+        }
+    .change {//密码错误
+        background-image: url(images/wrong.png);
+        color: red;
+    }
+    .right {//密码正确
+        color: green;
+        background-image: url(images/right.png);
+    }
+    </style>
+</head>
+<body>
+    <div class="register">
+        <input type="password" class="ipt">
+        <p class="message">请输入6~16位密码</p>
+    </div>
+    <script>
+        var pic = document.querySelector('.message');
+        var input = document.querySelector('.ipt');
+        input.onblur = function() {
+          if (this.value != '') {//防止我们什么也不输入，出现报错的情况
+            if (this.value.length < 6 || this.value.length > 16){
+            pic.className = 'message change';
+            pic.innerHTML = '你输入的位数不对';
+            } else {
+                pic.className = 'message right';
+                pic.innerHTML = '你输入的密码正确';
+            }
+          }
+        }
+    </script>
+```
 
+**排他思想**
+
+如果有同一组元素，我们想让其中一种元素实现某种样式，这时候就要用到循环的排他思想。
+
+1. 所有元素去除样式
+2. 给当前的元素添加样式
+
+按钮点击案例
+
+```javascript
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <button>按钮6</button>
+    <script>
+        var btn = document.querySelectorAll('button');
+        // console.log(btn);
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                //当我点击某个按钮时，先去掉所有的按钮背景颜色
+                for (var i = 0; i < btn.length; i++) {
+                    btn[i].style.backgroundColor = '';
+                }
+                //给当前的按钮设置背景颜色
+                this.style.backgroundColor = 'pink';
+            }
+        }
+    </script>
+</body>
 ```
 
 
