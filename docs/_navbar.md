@@ -2,7 +2,7 @@
 * 算法
 	* [搜索专题](/algorithm/search.md)
 	* [DP专题](/algorithm/DP.md)
-* Linux
+* Linux系统
 	* [Linux操作命令](#)
 	* [shell脚本](#)
 * 数据库
@@ -12,7 +12,19 @@
   * [html](#)
   * [css](#)
   * [javascript](/前端/javascript/JavaScript学习笔记.md)
+  * [Jquery](#)
+  * [Ajax](#)
+  * [node.js](#)
   * [vue](#)
+* 后端开发
+
+   * [javaSE基础](#)
+   * [JDBC](#)
+   * [JavaWeb](#)
+   * [JVM](#)
+   * [JUC](#)
+   * [Spring](#)
+   * [SpringBoot](#)
 * 编程语言
 
    * [C](#)
@@ -25,4 +37,5 @@
   * [typora](#)
   * [hexo](#)
   * [docsify](/docsify/docsify.md)
+  * [makdown](#)
 
