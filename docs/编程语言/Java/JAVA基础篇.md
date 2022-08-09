@@ -53,6 +53,8 @@
 
 <img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220809112759422.png" alt="image-20220809112759422" style="zoom:50%;" />
 
+注意要把系统自动生成的那条记录，也就是第一条记录删除掉，否则我们配置的就不会起任何作用。
+
 `win+R`输入`cmd`，打开之后输入`java`，`java -version`，`javac`。查看配置是否成功。
 
 ![image-20220809113237665](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220809113237665.png)
@@ -64,6 +66,8 @@
 如果只是单纯的想要更新JDK，没有必要删除所有的东西。我们可以用官方给的卸载工具将旧版本的JDK卸载掉。卸载后环境变量还会存在，只需安装新版本的JDK即可。[JAVA 卸载工具](https://www.java.com/zh-CN/download/uninstalltool.jsp)
 
 ![image-20220809113633829](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220809113633829.png)
+
+![image-20220809134049185](C:/Users/86186/AppData/Roaming/Typora/typora-user-images/image-20220809134049185.png)
 
 
 

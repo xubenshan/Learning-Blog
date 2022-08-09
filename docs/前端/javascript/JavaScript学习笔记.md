@@ -1899,7 +1899,7 @@ innerText innerHtml
 1. 所有元素去除样式
 2. 给当前的元素添加样式
 
-按钮点击案例
+==按钮点击案例==
 
 ```javascript
 <body>
@@ -1925,6 +1925,85 @@ innerText innerHtml
     </script>
 </body>
 ```
+
+**获取自定义属性值**
+
+```javascript
+//获取元素的自定义属性值
+element.getAttribute('属性') 
+
+<div myclass="1"></div>
+    <script>
+        var div = document.querySelector('div');
+        console.log(div.getAttribute('myclass'));// 1
+    </script>
+
+```
+
+**设置属性值**
+
+```javascript
+// 设置自定义属性值
+element.setAttribute('属性','值')
+
+    <div myclass="1"></div>
+    <script>
+        var div = document.querySelector('div');
+        div.setAttribute('myclass','3');
+        console.log(div.getAttribute('myclass'));// 3
+    </script>
+```
+
+**移除属性**
+
+```javascript
+element.removeAttribute('属性')
+
+    <div myclass="1"></div>
+    <script>
+        var div = document.querySelector('div');
+        div.setAttribute('myclass','3');
+        console.log(div.getAttribute('myclass'));// 3
+        div.removeAttribute('myclass');
+        console.log(div.getAttribute('myclass'));// null
+    </script>
+```
+
+**H5自定义属性**
+
+```javascript
+//之所以要自定义属性，因为有些数据可以保存在页面上不用保存在数据库中。
+//有些自定义属性容易引起歧义，不确定是自定义属性还是内置属性
+H5标准data-属性开头作为属性名
+//获取h5自定义属性(新增)
+element.dataset.属性
+dataset是一个集合，里面存放了所有以dataset开头的属性。
+    <div getTime="20" data-index="2" data-list-name="andy"></div>
+    <script>
+        var div = document.querySelector('div');
+        // console.log(div.getTime);
+        console.log(div.getAttribute('getTime'));
+        div.setAttribute('data-time', 20);
+        console.log(div.getAttribute('data-index'));
+        console.log(div.getAttribute('data-list-name'));
+        // h5新增的获取自定义属性的方法 它只能获取data-开头的
+        // dataset 是一个集合里面存放了所有以data开头的自定义属性
+        console.log(div.dataset);
+        console.log(div.dataset.index);
+        console.log(div.dataset['index']);
+        // 如果自定义属性里面有多个-链接的单词，我们获取的时候采取 驼峰命名法
+        console.log(div.dataset.listName);
+        console.log(div.dataset['listName']);
+    </script>
+```
+
+
+
+**tab栏切换**
+
+<img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/carbon.png" alt="carbon"  />
+
+##### 节点操作
 
 
 
