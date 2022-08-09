@@ -18,7 +18,7 @@
    * [C](#)
 
     * [CPP](#)
-    * [JAVA](#)
+    * [JAVA](/编程语言/Java/README.md)
     * [python](#)
 * 工具
   * [git](/工具/Git学习笔记.md)
