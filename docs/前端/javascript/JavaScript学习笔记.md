@@ -1,4 +1,4 @@
-# JavaScript学习笔记
+# JavaScript基础篇
 
 ## **简介**
 
@@ -1566,8 +1566,6 @@ console.log(p,name);// xubenshan
 
 ### DOM
 
-`df`
-
 ##### 获取元素
 
 ```javascript
@@ -2005,25 +2003,406 @@ dataset是一个集合，里面存放了所有以dataset开头的属性。
 
 ##### 节点操作
 
+为了能更加方便的获取元素，让元素之间的逻辑性更强。我们可以采用节点的方式获得元素。
+
+**获取父节点和子节点**
+
+```javascript
+// 父子节点 element.parentNode
+// 得到的是离element最近的父节点，找不到就返回null
+// 子节点 parentNode.childNode
+// 得到的是所有节点，包括元素节点 文本节点
+// 如果只想得到元素节点，需要进行特殊处理，不提倡使用。
+// parentNode.children 得到所有的子元素节点
+```
+
+**获取第一个子节点和最后一个子节点**
+
+```javascript
+// parentNode.firstChild 得到的是第一个子节点，不一定是元素节点。
+// parentNode.firstElementChild 得到第一个子元素节点 伪数组
+// parentNode.lastElementChild 得到最后一个子元素节点
+// 但是这个方法存在兼容性问题。
+// 我们更推荐用伪数组的方法得到。 parentNode.children[0] 得到第一个元素节点  parentNode.children[parentNode.children.length - 1] 得到最后一个元素节点
+```
+
+**案例 下拉菜单**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style-type: none;
+        }
+        
+        a {
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .nav {
+            margin: 100px;
+        }
+        
+        .nav>li {
+            position: relative;
+            float: left;
+            width: 80px;
+            height: 41px;
+            text-align: center;
+        }
+        
+        .nav li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 41px;
+            color: #333;
+        }
+        
+        .nav>li>a:hover {
+            background-color: #eee;
+        }
+        
+        .nav ul {
+            display: none;
+            position: absolute;
+            top: 41px;
+            left: 0;
+            width: 100%;
+            border-left: 1px solid #FECC5B;
+            border-right: 1px solid #FECC5B;
+        }
+        
+        .nav ul li {
+            border-bottom: 1px solid #FECC5B;
+        }
+        
+        .nav ul li a:hover {
+            background-color: #FFF5DA;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="">私信</a>
+                </li>
+                <li>
+                    <a href="">评论</a>
+                </li>
+                <li>
+                    <a href="">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="">私信</a>
+                </li>
+                <li>
+                    <a href="">评论</a>
+                </li>
+                <li>
+                    <a href="">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="">私信</a>
+                </li>
+                <li>
+                    <a href="">评论</a>
+                </li>
+                <li>
+                    <a href="">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="">私信</a>
+                </li>
+                <li>
+                    <a href="">评论</a>
+                </li>
+                <li>
+                    <a href="">@我</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        // 1. 获取元素
+        var nav = document.querySelector('.nav');
+        var lis = nav.children;
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].onmouseover = function() {
+                this.children[1].style.display = 'block';
+            }
+            lis[i].onmouseout = function() {
+                this.children[1].style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+```
+
+**获取兄弟节点**（不常用）
+
+```javascript
+// nextSibling得到的是下一个兄弟节点，包括文本节点
+// previousSibling 得到的是上一个兄弟节点，包括文本节点
+// nextelementSibling 得到下一个兄弟元素节点
+// previouselementSibling 得到上一个兄弟元素节点
+```
+
+**创建节点**
+
+```javascript
+// 动态创建元素节点
+document.createElement('元素节点')
+```
+
+**添加节点**
+
+```javascript
+父节点.appendChild(child) append是追加元素，类似于数组的push
+父节点.insertBefore(child,指定元素) 添加到指定元素的前面。
+    <ul>
+        <li>123</li>
+    </ul>
+    <script>
+        // 创建新的元素节点
+        var li = document.createElement('li');
+        //添加到ul里面
+        var ul = document.querySelector('ul');
+        ul.appendChild(li);// 添加到第一个li的后面
+        var lis = document.createElement('li');
+        ul.insertBefore(lis, ul.children[0]);
+    </script>
+```
+
+案例 简单发布留言案例
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding: 100px;
+        }
+        
+        textarea {
+            width: 200px;
+            height: 100px;
+            border: 1px solid pink;
+            outline: none;
+            resize: none;
+        }
+        
+        ul {
+            margin-top: 50px;
+        }
+        
+        li {
+            width: 300px;
+            padding: 5px;
+            background-color: rgb(245, 209, 243);
+            color: red;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea name="" id=""></textarea>
+    <button>发布</button>
+    <ul>
+    </ul>
+    <script>
+        // 1. 获取元素
+        var btn = document.querySelector('button');
+        var text = document.querySelector('textarea');
+        var ul = document.querySelector('ul');
+        //注册事件
+        btn.onclick = function() {
+            if (text.value == '') {
+                alert('你没有输入内容');
+                return false;
+            } else {
+                var li = document.createElement('li');
+                li.innerHTML = text.value;
+                //添加节点
+                ul.insertBefore(li, ul.children[0]);
+            }
+        }
+    </script>
+</body>
+</html>
+```
+
+**删除节点**
+
+```javascript
+父节点.removeChild(删除的节点)，返回删除的节点
+    <button>删除</button>
+    <ul>
+        <li>熊大</li>
+        <li>熊二</li>
+        <li>光头强</li>
+    </ul>
+    <script>
+        //获取元素
+        var ul = document.querySelector('ul');
+        // ul.removeChild(ul.children[0]);
+        var btn = document.querySelector('button');
+        btn.onclick = function() {
+            if (ul.children.length == 0) {
+                this.disabled = true;//当ul里面没有元素时，就禁用删除按钮
+            } else {
+                ul.removeChild(ul.children[0]);
+            }
+        }
+    </script>
+```
+
+**删除留言案例**
+
+```javascript
+        // 1. 获取元素
+        var btn = document.querySelector('button');
+        var text = document.querySelector('textarea');
+        var ul = document.querySelector('ul');
+        // 2. 注册事件
+        btn.onclick = function() {
+            if (text.value == '') {
+                alert('您没有输入内容');
+                return false;
+            } else {
+                // console.log(text.value);
+                // (1) 创建元素
+                var li = document.createElement('li');
+                // 先有li 才能赋值
+                li.innerHTML = text.value + "<a href='javascript:;'>删除</a>";//阻止链接跳转可以用javascript:void(0);或者javascript:;
+                // (2) 添加元素
+                // ul.appendChild(li);
+                ul.insertBefore(li, ul.children[0]);
+                // (3) 删除元素 删除的是当前链接的li  它的父亲
+                // var as = document.querySelectorAll('a');
+                // for (var i = 0; i < as.length; i++) {
+                //     as[i].onclick = function() {
+                //         ul.removeChild(this.parentNode);
+                //     }
+                // }
+                var a = document.querySelector('a');
+                a.onclick = function() {
+                    ul.removeChild(a.parentNode);
+                }
+            }
+        }
+```
+
+**克隆节点**
+
+```javascript
+//node.cloneNode()// 浅拷贝 只拷贝节点node，不拷贝节点中的内容
+//node.cloneNode(true) 深拷贝，拷贝节点node和节点中的内容
+```
+
+**动态生成表格**
+
+```javascript
+
+```
+
+
+
+
+
+**三种创建元素的方式对比**
+
+```javascript
+innerHTML document.creatElement() document.write()
+1.document.write()是直接将内容写进页面的内容流 文档流执行完毕后，他会导致页面重绘。
+2.innerHTML是将内容写进一个DOM节点中，不会页面重绘。创建多个元素若使用数组的方式拼接，则效率更高
+3.document.creatElement()创建多个元素的效率较低，但结构更清晰。
+```
+
+数组方式创建多个元素
+
+```javascript
+    <button>点击</button>
+    <p>abc</p>
+    <div class="inner"></div>
+    <div class="create"></div>
+    <script>
+        // 2. innerHTML 创建元素
+        var inner = document.querySelector('.inner');
+        // for (var i = 0; i <= 100; i++) {
+        //     inner.innerHTML += '<a href="#">百度</a>'
+        // }
+        var arr = [];
+        for (var i = 0; i <= 100; i++) {
+            arr.push('<a href="#">百度</a>');
+        }
+        inner.innerHTML = arr.join('');
+    </script>
+```
+
+
+
+##### 事件高级
+
 
 
 ### BOM
 
 
 
-## ES6新特性
+## **ES6新特性**
 
 
 
-## 正则表达式
+## **正则表达式**
 
 
-
-## **jQuery**
-
-
-
-## Ajax
 
 
 
