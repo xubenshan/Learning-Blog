@@ -31,7 +31,7 @@
 
     * [CPP](#)
     * [JAVA](/编程语言/Java/README.md)
-    * [python](#)
+    * [python](/python/python学习笔记.md)
 * 工具
   * [git](/工具/Git学习笔记.md)
   * [typora](#)
