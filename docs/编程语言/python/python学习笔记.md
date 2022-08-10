@@ -1,3 +1,3 @@
 # python学习笔记
 
-"E:\github\docs\编程语言\python\python学习笔记.md"
+这里是python的笔记。

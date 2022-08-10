@@ -96,6 +96,8 @@ print ("hello world")
 
 ## python
 
+[](/编程语言/python/python学习笔记.md)
+
 # **工具**
 
 ## git
