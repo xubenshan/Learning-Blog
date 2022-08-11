@@ -951,19 +951,277 @@ target 触发事件的元素对象 点击了谁谁就是target
 type 返回事件类型 不加on
 preventDefault() 阻止默认事件 让链接不能跳转 提交按钮不能提交
 stopPropagation() 阻止冒泡
-
 ```
 
+**事件委托**
 
+事件委托，又称为事件代理
+
+事件委托的原理：不要给每个子节点单独设置事件监听器，而是将事件监听器绑定在父节点上面，通过冒泡原理影响设置每个子节点。
+
+事件委托的作用：只操作了一次DOM，提高程序的性能。
+
+```javascript
+    <ul>
+        <li>知否知否，点我应有弹框在手！</li>
+        <li>知否知否，点我应有弹框在手！</li>
+        <li>知否知否，点我应有弹框在手！</li>
+        <li>知否知否，点我应有弹框在手！</li>
+        <li>知否知否，点我应有弹框在手！</li>
+    </ul>
+    <script>
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click', function(e) {
+            // 排他思想
+            for (var i = 0; i < this.children.length; i++) {
+                this.children[i].style.background = '';
+            }
+            //e.target 返回触发事件的对象
+            e.target.style.background = 'pink';
+        })
+    </script>
+```
+
+**两个鼠标事件**
+
+* 禁止选中文字 `selectstart`
+* 禁止右键菜单 `contextmenu`
+
+```javascript
+    我不能被复制和选中
+    <script>
+        //禁止选中文字
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault() // 阻止默认事件       
+        })
+        //禁止右键菜单
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault()        
+        })
+    </script>
+```
+
+**鼠标事件对象** `MouseEvent`
+
+| 鼠标事件对象 | 说明                                  |
+| ------------ | ------------------------------------- |
+| e.clientX    | 返回鼠标相对于浏览器可视化窗口的x坐标 |
+| e.clientY    | 返回鼠标相对于浏览器可视化窗口的Y坐标 |
+| **e.pageX**  | 返回鼠标相对于文档页面的x坐标         |
+| **e.pageY**  | 返回鼠标相对于文档页面的Y坐标         |
+| e.screenX    | 返回鼠标相对于电脑屏幕的x坐标         |
+| e.screenY    | 返回鼠标相对于电脑屏幕的Y坐标         |
+
+```javascript
+    <script>
+        // 鼠标事件对象 MouseEvent
+        document.addEventListener('click', function(e) {
+            // 1. client 鼠标在可视区的x和y坐标
+            console.log(e.clientX);
+            console.log(e.clientY);
+            console.log('---------------------');
+
+            // 2. page 鼠标在页面文档的x和y坐标
+            console.log(e.pageX);
+            console.log(e.pageY);
+            console.log('---------------------');
+
+            // 3. screen 鼠标在电脑屏幕的x和y坐标
+            console.log(e.screenX);
+            console.log(e.screenY);
+
+        })
+    </script>
+```
+
+```javascript
+// 跟随鼠标移动的图片 给整个页面绑定鼠标移动事件，利用e.pageX,e.pageY得到鼠标的实时坐标，将坐标赋给图片的left,top即可。
+    <img src="images/angel.gif" alt="">
+    <script>
+        var pic = document.querySelector('img');
+        document.addEventListener('mousemove', function(e) {
+            // 1. mousemove只要我们鼠标移动1px 就会触发这个事件
+            // console.log(1);
+            // 2.核心原理： 每次鼠标移动，我们都会获得最新的鼠标坐标， 把这个x和y坐标做为图片的top和left 值就可以移动图片
+            var x = e.pageX;
+            var y = e.pageY;
+            console.log('x坐标是' + x, 'y坐标是' + y);
+            //3 . 千万不要忘记给left 和top 添加px 单位
+            pic.style.left = x - 50 + 'px';
+            pic.style.top = y - 40 + 'px';
+        });
+    </script>
+```
+
+**键盘事件对象**
+
+| 键盘事件   | 触发条件                                                  |
+| ---------- | --------------------------------------------------------- |
+| onkeyup    | 某个键盘按键松开时触发                                    |
+| onkeydown  | 某个键盘按键按下时触发                                    |
+| onkeypress | 某个键盘按键按下时触发 但是不识别功能键 CTRL 方向键 shift |
+
+```javascript
+// 三个事件的执行顺序  keydown -- keypress -- keyup
+        document.addEventListener('keyup', function() {
+            console.log('我弹起了');
+        })
+        document.addEventListener('keydown', function() {
+            console.log('我按下了down');
+        })
+        document.addEventListener('keypress', function() {
+            console.log('我按下了press');
+        })
+```
+
+判断用户按下哪个键 `e.key`
+
+```javascript
+// 注意我们不再使用keyCode属性了。
+        document.addEventListener('keyup', function(e) {
+            console.log(e.key);
+        })
+```
+
+**案例 模拟京东按键输入内容**
+
+当我们按下s键，光标就定位到搜索框
+
+```javascript
+    <input type="text">
+    <script>
+        var input = document.querySelector('input');
+        document.addEventListener('keyup', function(e) { //不要用down press 会将s填入光标中
+            // console.log(e.key);
+            if (e.key === 's') {
+                input.focus();// 获得光标
+            }
+        })
+    </script>
+```
+
+**案例 模拟京东快递单号查询案例**
+
+当我们在文本框中输入内容时，文本框上面自动显示大字号的内容。
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .search {
+            position: relative;
+            width: 178px;
+            margin: 100px;
+        }
+        
+        .con {
+            display: none;
+            position: absolute;
+            top: -40px;
+            width: 171px;
+            border: 1px solid rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+            padding: 5px 0;
+            font-size: 18px;
+            line-height: 20px;
+            color: #333;
+        }
+        
+        .con::before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 28px;
+            left: 18px;
+            border: 8px solid #000;
+            border-style: solid dashed dashed;
+            border-color: #fff transparent transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        <div class="con">123</div>
+        <input type="text" placeholder="请输入您的快递单号" class="jd">
+    </div>
+    <script>
+        // 快递单号输入内容时， 上面的大号字体盒子（con）显示(这里面的字号更大）
+        // 表单检测用户输入： 给表单添加键盘事件
+        // 同时把快递单号里面的值（value）获取过来赋值给 con盒子（innerText）做为内容
+        // 如果快递单号里面内容为空，则隐藏大号字体盒子(con)盒子
+        var con = document.querySelector('.con');
+        var jd_input = document.querySelector('.jd');
+        document.addEventListener('keyup', function(e) {
+            if (e.key == 's') {
+                console.log(e.key);
+                jd_input.focus();
+            }
+        })
+        jd_input.addEventListener('keyup', function() {// 不能用keydown 放大的文本框内容总是比输入的内容少一个
+                // console.log('输入内容啦');
+                if (this.value == '') {
+                    con.style.display = 'none';
+                } else {
+                    con.style.display = 'block';
+                    con.innerText = this.value;
+                }
+            })
+            // 当我们失去焦点，就隐藏这个con盒子
+        jd_input.addEventListener('blur', function() {
+                con.style.display = 'none';
+            })
+            // 当我们获得焦点，就显示这个con盒子
+        jd_input.addEventListener('focus', function() {
+            if (this.value !== '') {
+                con.style.display = 'block';
+            }
+        })
+    </script>
+</body>
+```
 
 
 
 ## BOM
 
+> 浏览器对象模型 核心对象是Window
+
+### BOM概述
+
+DOM和BOM的对比
+
+* DOM是把文档当作对象来看待，主要是操作页面元素 ，标准是W3C ，兼容性较好
+* BOM是把浏览器当作对象来对待，学习的是浏览器窗口交互的一些对象 ，兼容性差
+
+BOM的构成
+
+window对象是浏览器的顶级对象，具有双重角色。
+
+1. 它是js访问浏览器窗口的一个借口
+2. 它是一个全局对象，定义在全局作用域的函数，变量自动变成window对象下的方法和属性。
+
+> window有一个属性叫做name,因此前面变量部分说过不建议将变量命名成name。
+
+  ### 常用事件
 
 
-## **ES6新特性**
 
+### 定时器
 
+### JS执行队列
 
-## **正则表达式**
+### 常用对象
+
