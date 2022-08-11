@@ -30,7 +30,9 @@
 
 ## JavaScript
 
-[javascript学习笔记](/前端/javascript/JavaScript学习笔记.md)
+[javascript基础篇](/前端/javascript/JavaScript学习笔记.md)
+
+[javascript中级篇](/前端/javascript/Web%20APIs.md)
 
 ## Vue框架
 
@@ -96,7 +98,7 @@ print ("hello world")
 
 ## python
 
-[](/编程语言/python/python学习笔记.md)
+[python基础知识](/编程语言/python/python学习笔记.md)
 
 # **工具**
 
