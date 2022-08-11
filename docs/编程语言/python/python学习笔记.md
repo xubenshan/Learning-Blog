@@ -86,10 +86,10 @@ if ***:
     print(****)//注意要缩进
     
 # 为宝石数量赋值
-stonenumber=6
+stonenumber = 6
 
 # 条件：如果你拥有的宝石数量大于等于6个
-if stonenumber>=6:
+if stonenumber >= 6:
    
     # 结果：显示‘你拥有了毁灭宇宙的力量’的结果
     print('你拥有了毁灭宇宙的力量')   //你拥有了毁灭宇宙的力量
@@ -102,10 +102,10 @@ if stonenumber>=6:
 ```python
 # 前天晚上，助教无比纠结自己要不要吃夜宵，所以她打算上秤称一下，如果体重超过100斤，就不吃了，没有的话，就放心吃。结果……刚好101斤（泪目）……
 # 要先为助教的体重赋值，助教的体重是101斤
-weight=101
+weight = 101
 
 # 如果体重超过100斤的条件下，就……(条件后需加冒号)
-if weight>100:
+if weight > 100:
   
   # 就打印结果：不吃了！(注意检查是否自动缩进)
   print('不吃了')
@@ -120,10 +120,10 @@ else:
 `if elif else`语句
 
 ```python
-number=0
-if(number>=6):
+number = 0
+if number >= 6:
     print('你拥有了毁灭宇宙的力量')
-elif(0<number<=5):
+elif 0 < number <= 5:
     print('绯红女巫需要亲手毁掉幻视额头上的心灵宝石')
 else:
     print('需要惊奇队长逆转未来') //需要惊奇队长逆转未来
@@ -138,19 +138,37 @@ else:
 写嵌套一定要注意缩进，这是python和其他语言不一样的地方。通过缩进来使代码层次更加清晰。
 
 ```python
-historyscore=26
-if(historyscore>=60):
+historyscore = 26
+if historyscore >= 60:
     print('你已经及格')
-    if(historyscore>=80):
+    if historyscore >= 80:
         print('你很优秀')
     else:
         print('你只是一般般')
 else:
     print('你不及格')
-    if(historyscore<30):
+    if historyscore < 30:
         print('学渣')
     else:
         print('还能抢救一下')
 print('程序结束')   
 ```
+
+**input()函数**
+
+`input()`函数input()函数是输入函数，当你在函数的括号内写出问题时，input()函数会将此问题原样显示在屏幕上，并在终端区域等待你针对此问题的回答。
+
+* 要将``input`函数的结果进行赋值。
+
+  ```python
+   ans = input('这个问题的答案是：')
+  ```
+
+* 返回的数据类型是字符串型，不管用户输入的是什么类型，都会强制返回字符串型。若要使用整数型可以用`int()`将得到的字符串强制转化成整数。
+
+```python
+choice = int(input('你的选择是：'))
+```
+
+
 
