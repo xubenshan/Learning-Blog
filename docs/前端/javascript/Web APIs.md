@@ -1217,11 +1217,245 @@ window对象是浏览器的顶级对象，具有双重角色。
 
   ### 常用事件
 
+**窗口加载事件**
+
+`window.onload = function()`
+
+`window.addEventListener('load',function(){})`
+
+当文档内容完全加载完成后才会触发这个事件。我们就可以利用这个事件，将js代码写在页面元素的上面。
+
+> DOMContentLoaded事件当DOM元素加载完成后就会触发。页面图片比较多，可以使用这个事件。
+
+**调整窗口大小事件**
+
+`window.onresize  = function()`
+
+`window.addEventListener('resize', function(){})`
+
+窗口大小发生变化就会触发这个事件。
+
+经常利用这个事件完成响应式布局。 `window.innerWidth` 屏幕宽度
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        window.addEventListener('load', function() {
+            var div = document.querySelector('div');
+            window.addEventListener('resize', function() {
+                console.log(window.innerWidth);
+
+              //  console.log('变化了');
+                if (window.innerWidth <= 800) {
+                    div.style.display = 'none';
+                } else {
+                    div.style.display = 'block';
+                }
+
+            })
+        })
+    </script>
+    <div></div>
+</body>
+</html>
+```
+
 
 
 ### 定时器
 
+**setTimeout()**
+
+`window.setTimeout(调用函数，延迟的毫秒数)`
+
+>里面的调用函数可以只写函数名，也可以直接写函数。
+>
+>window可写可省略
+
+```javascript
+        function callback() {
+            console.log('爆炸了');
+        }
+        var timer1 = setTimeout(callback, 3000);
+        var timer2 = setTimeout(callback, 5000);
+		var timer3 = setTimeout(function(){
+            console.log('爆炸了');
+        }, 7000);
+// 我们要给定时器起个名字，区分不同的定时器。
+```
+
+> 回调函数
+>
+> 定时器里面的函数又叫回调函数。回头去调用。
+>
+> onclick 里面的函数也是回调函数
+
+**案例 5秒自动关闭广告**
+
+```javascript
+    <img src="images/ad.jpg" alt="" class="ad">
+    <script>
+        var ad = document.querySelector('.ad');
+        setTimeout(function() {
+            ad.style.display = 'none';
+        }, 5000);
+    </script>
+```
+
+**停止`setTimeout`定时器**
+
+`clearTimeout(定时器的名字)`
+
+```javascript
+    <button>点击停止定时器</button>
+    <script>
+        var btn = document.querySelector('button');
+        var timer = setTimeout(function() {
+            console.log('爆炸了');
+
+        }, 5000);
+        btn.addEventListener('click', function() {
+            clearTimeout(timer);
+        })
+    </script>
+```
+
+**setInterval()**
+
+该方法可以重复调用一个函数，每隔一段时间就去调用这个函数。
+
+```javascript
+        setInterval(function() {
+            console.log('继续输出');
+
+        }, 1000);
+```
+
+**案例 倒计时**
+
+```javascript
+
+```
+
+停止`setInterval`定时器
+
+`clearInterval(定时器的名字)`
+
+```javascript
+    <button class="begin">开启定时器</button>
+    <button class="stop">停止定时器</button>
+    <script>
+        var begin = document.querySelector('.begin');
+        var stop = document.querySelector('.stop');
+        var timer = null; // 全局变量  null是一个空对象
+        begin.addEventListener('click', function() {
+            timer = setInterval(function() {
+                console.log('ni hao ma');
+
+            }, 1000);
+        })
+        stop.addEventListener('click', function() {
+            clearInterval(timer);
+        })
+    </script>
+```
+
+**发送短信案例**
+
+点击按钮后，该按钮60秒内不能再次点击，防止重复发短信。
+
+```javascript
+
+```
+
+**this指向**
+
+一般情况下谁调用对象，this就指向这个调用者。
+
+1. 全局作用域下或普通函数中this指向全局对象window
+2. 方法调用谁调用this指向谁
+3. 构造函数this指向实例化的对象
+
 ### JS执行队列
+
+js是单线程，同一时间只能做一件事。所有的任务都需要排队。
+
+HTML5提出允许js创建多个线程，出现了同步和异步。
+
+**同步**
+
+程序的执行顺序和任务的排列顺序相同。
+
+**异步**
+
+同时做多个任务
+
+```javascript
+        console.log(1);
+
+        setTimeout(function() {
+
+            console.log(3);
+
+        }, 1000);
+
+        console.log(2); //  1 2 3
+```
+
+**同步任务**
+
+同步任务放到执行栈中。
+
+**异步任务**
+
+js的异步是通过回调函数实现的。
+
+
+
+执行过程
+
+* 先执行同步任务
+* 异步任务放入任务队列（消息队列）中
+* 执行栈中的同步任务执行完毕后，系统按照顺序依读取任务队列中的异步任务，异步任务进入执行栈，开始执行。
+
+```javascript
+        console.log(1);
+
+        setTimeout(function() {
+
+            console.log(3);
+
+        }, 0);
+
+        console.log(2); // 1 2 3
+```
+
+
+
+**js的执行机制**
+
+多个异步任务该如何执行。
+
+异步进程处理
+
+
 
 ### 常用对象
 
