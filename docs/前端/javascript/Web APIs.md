@@ -1197,21 +1197,21 @@ stopPropagation() 阻止冒泡
 
 ## BOM
 
-> 浏览器对象模型 核心对象是Window
+> 浏览器对象模型 核心对象是`Window`
 
 ### BOM概述
 
-DOM和BOM的对比
+`DOM`和`BOM`的对比
 
-* DOM是把文档当作对象来看待，主要是操作页面元素 ，标准是W3C ，兼容性较好
-* BOM是把浏览器当作对象来对待，学习的是浏览器窗口交互的一些对象 ，兼容性差
+* `DOM`是把文档当作对象来看待，主要是操作页面元素 ，标准是`W3C` ，兼容性较好
+* `BOM`是把浏览器当作对象来对待，学习的是浏览器窗口交互的一些对象 ，兼容性差
 
-BOM的构成
+`BOM`的构成
 
-window对象是浏览器的顶级对象，具有双重角色。
+`window`对象是浏览器的顶级对象，具有双重角色。
 
-1. 它是js访问浏览器窗口的一个借口
-2. 它是一个全局对象，定义在全局作用域的函数，变量自动变成window对象下的方法和属性。
+1. 它是`js`访问浏览器窗口的一个借口
+2. 它是一个全局对象，定义在全局作用域的函数，变量自动变成`window`对象下的方法和属性。
 
 > window有一个属性叫做name,因此前面变量部分说过不建议将变量命名成name。
 
@@ -1351,7 +1351,64 @@ window对象是浏览器的顶级对象，具有双重角色。
 **案例 倒计时**
 
 ```javascript
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 200px;
+        }
+        
+        span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="hour">1</span>
+        <span class="minute">2</span>
+        <span class="second">3</span>
+    </div>
+    <script>
+        // 1. 获取元素 
+        var hour = document.querySelector('.hour'); // 小时的黑色盒子
+        var minute = document.querySelector('.minute'); // 分钟的黑色盒子
+        var second = document.querySelector('.second'); // 秒数的黑色盒子
+        var inputTime = +new Date('2019-5-1 18:00:00'); // 返回的是用户输入时间总的毫秒数
+        countDown(); // 我们先调用一次这个函数，防止第一次刷新页面有空白 
+        // 2. 开启定时器
+        setInterval(countDown, 1000);
+
+        function countDown() {
+            var nowTime = +new Date(); // 返回的是当前时间总的毫秒数
+            var times = (inputTime - nowTime) / 1000; // times是剩余时间总的秒数 
+            var h = parseInt(times / 60 / 60 % 24); //时
+            h = h < 10 ? '0' + h : h;
+            hour.innerHTML = h; // 把剩余的小时给 小时黑色盒子
+            var m = parseInt(times / 60 % 60); // 分
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m;
+            var s = parseInt(times % 60); // 当前的秒
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s;
+        }
+    </script>
+</body>
+</html
 ```
 
 停止`setInterval`定时器
@@ -1382,22 +1439,39 @@ window对象是浏览器的顶级对象，具有双重角色。
 点击按钮后，该按钮60秒内不能再次点击，防止重复发短信。
 
 ```javascript
-
+    手机号码： <input type="number"> <button>发送</button>
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function(){
+            var time = 5;
+            btn.disabled = true;
+            var timer = setInterval(function(){
+                if (time == 0) {
+                    clearInterval(timer);// 清除定时器
+                    btn.disabled = false;
+                    btn.innerHTML = '发送';
+                } else {
+                    btn.innerHTML = '还剩' + time + '秒才能重新发送';
+                    time--;
+                    }
+            }, 1000)
+        })
+    </script>
 ```
 
 **this指向**
 
-一般情况下谁调用对象，this就指向这个调用者。
+一般情况下谁调用对象，`this`就指向这个调用者。
 
-1. 全局作用域下或普通函数中this指向全局对象window
-2. 方法调用谁调用this指向谁
-3. 构造函数this指向实例化的对象
+1. 全局作用域下或普通函数中`this`指向全局对象`window`
+2. 方法调用谁调用`this`指向谁
+3. 构造函数`this`指向实例化的对象
 
 ### JS执行队列
 
-js是单线程，同一时间只能做一件事。所有的任务都需要排队。
+`js`是单线程，同一时间只能做一件事。所有的任务都需要排队。
 
-HTML5提出允许js创建多个线程，出现了同步和异步。
+HTML5提出允许`js`创建多个线程，出现了同步和异步。
 
 **同步**
 
@@ -1425,9 +1499,7 @@ HTML5提出允许js创建多个线程，出现了同步和异步。
 
 **异步任务**
 
-js的异步是通过回调函数实现的。
-
-
+`js`的异步是通过回调函数实现的。
 
 执行过程
 
@@ -1451,11 +1523,137 @@ js的异步是通过回调函数实现的。
 
 **js的执行机制**
 
-多个异步任务该如何执行。
+>  多个异步任务该如何执行。 这就涉及到了js的执行机制。
 
-异步进程处理
+执行机制原理图
 
+<img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220813102535117.png" alt="image-20220813102535117" style="zoom: 67%;" />
 
+```javascript
+        console.log(1);
+        document.onclick = function() {
+            console.log('click');
+        }
+        console.log(2);
+        setTimeout(function() {
+            console.log(3)
+        }, 3000) // 1 2 3 最后点击鼠标，打印出click，若三秒内点击，则先打印出click，最后输出3.
+```
+
+执行过程分析：
+
+首先执行栈将click和定时器交给异步进程处理，先执行同步任务，打印出1 2 。同步任务执行完毕后去任务队列看还有没有异步任务，3秒后异步进程处理将定时器推入任务队列中，然后进入主线程执行该任务。当点击鼠标后，onclick事件推入任务队列，主线程查看任务队列有没有异步任务，然后进入主线程执行该任务。
+
+总之遇到多个异步任务，谁先进入任务队列，谁先执行。
 
 ### 常用对象
+
+`location`对象
+
+获取和设置窗口的`URL`。
+
+> URL 统一资源定位符   它包含的信息指出文件的位置以及浏览器怎么处理它。
+
+<img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220813104357059.png" alt="image-20220813104357059" style="zoom:50%;" />
+
+**`location`常用属性**
+
+ `location.href`   获取整个URL或设置URL
+
+`location.search` 返回参数
+
+案例 5秒之后跳转页面
+
+```javascript
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        var time = 5;
+        
+        function fn() {
+            div.innerHTML = '还剩' + time + '秒自动跳转页面';
+            time--;
+            if (time == 0){
+            location.href = 'http://xubenshan.top';
+            }
+        }
+        fn();// 在定时器前面先调用这个回调函数，防止刷新页面有空白。
+        setInterval(fn, 1000);
+    </script>
+```
+
+案例 获取URL参数数据
+
+```javascript
+location.search = '?uname=xubenshan'
+得到login页面的登录信息，将它变成用户名xubenshan，同时还要保留uname。我们可以用substr将？去掉，用split将uname和xubenshan分隔开。
+login页面
+    <form action="index.html">
+        用户名： <input type="text" name="uname">
+        <input type="submit" value="登录">
+    </form>
+index页面
+    <div></div>
+    <script>
+        console.log(location.search); // ?uname=xubenshan
+        // 1.先去掉？  substr('起始的位置'，截取几个字符);
+        var params = location.search.substr(1); 
+        console.log(params); // uname=xubenshan
+        // 2. 利用=把字符串分割为数组 split('=');
+        var arr = params.split('=');
+        console.log(arr); // ["uname", "xubenshan"]
+        var div = document.querySelector('div');
+        // 3.把数据写入div中
+        div.innerHTML = arr[1] + '欢迎您';
+    </script>
+```
+
+**`location`常用方法**
+
+`location.assign(URL)` 跳转页面
+
+`location.replace() ` 替换页面
+
+`location.reload()` 重新加载页面  里面参数为`true`相对于强制刷新。
+
+```javascript
+    <button>点击</button>
+    <div></div>
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function() {
+            // 记录浏览历史，所以可以实现后退功能
+            // location.assign('http://www.xubenshan.top');
+            // 不记录浏览历史，所以不可以实现后退功能
+            // location.replace('http://www.xubenshan.top');
+            location.reload(true);
+        })
+    </script>
+```
+
+`navigator`对象
+
+包含浏览器的信息。
+
+**常用属性**
+
+`userAgent` 返回由客户机发送服务器的user-agent的头部的值。
+
+判断用户哪个终端打开页面  了解即可
+
+<img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220813112440843.png" alt="image-20220813112440843" style="zoom:67%;" />
+
+`history`对象
+
+**常用的方法**
+
+`history.forward()` 前进
+
+`history.back()`  后退
+
+`history.go(前进或后退几页)`
+
+
+
+
 
