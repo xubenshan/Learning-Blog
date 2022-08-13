@@ -31,9 +31,9 @@
 
     * [CPP](#)
     * [JAVA](/编程语言/Java/README.md)
-    * [python](/编程语言/python/python学习笔记.md)
+    * [python](/language/python/pythonlearn.md)
 * 工具
-  * [git](/工具/Git学习笔记.md)
+  * [git](/工具/Gitlearn.md)
   * [typora](#)
   * [hexo](#)
   * [docsify](/docsify/docsify.md)
