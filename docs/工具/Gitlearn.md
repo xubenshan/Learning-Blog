@@ -246,7 +246,26 @@ ssh
 
 `git push -u origin main`
 
+
+
+在`push`的过程中出现下面情况：
+
+![image-20220817070550908](https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220817070550908.png)
+
+说明远程库和你的本地库版本不一样，这时候要先将远程库`pull`到本地库，然后再`push`到远程库。
+
+```bash
+git pull --rebase origin master
+git push origin master
+```
+
+<img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/image-20220817071019403.png" alt="image-20220817071019403" style="zoom:80%;" />
+
+
+
 ## **Git操作**
+
+
 
 ### 版本管理
 
