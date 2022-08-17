@@ -7,7 +7,7 @@
 	* [shell脚本](#)
 * 数据库
 
-  * [mySql](/database/mysqlbase.md)
+  * [mySql](/database/README.md)
 * 前端开发
   * [html](#)
   * [css](#)
