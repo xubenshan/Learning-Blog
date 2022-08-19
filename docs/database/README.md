@@ -1,6 +1,6 @@
 # MySQL学习笔记
 
-这里是mysql篇章，记录我的mysql笔记。
+> 这里是mysql篇章，记录我的mysql笔记。
 
 ## MySQL基础篇
 [MySQL基础篇](/database/mysqlbase.md) 主要讲解的是：
