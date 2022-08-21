@@ -1509,7 +1509,7 @@ split('分割符') join将数组转化成字符串
 
 简单数据类型和复杂数据类型
 
-* 简单数据类型（值类型） 
+* 简单数据类型（值类型）
 
 `string` `number` `boolean` `undefined` `null`
 

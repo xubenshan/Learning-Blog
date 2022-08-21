@@ -1,7 +1,6 @@
 * [首页](/README.md)
 * 算法
-	* [搜索专题](/algorithm/search.md)
-	* [DP专题](/algorithm/DP.md)
+	* [算法笔记](/algorithm/README.md)
 * Linux系统
 	* [Linux操作命令](#)
 	* [shell脚本](#)
