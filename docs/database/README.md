@@ -3,6 +3,9 @@
 > 这里是mysql篇章，记录我的mysql笔记。
 
 ## MySQL基础篇
+
+<img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/mysql%E5%9F%BA%E7%A1%80.jpg" alt="mysql基础" style="zoom:80%;" />
+
 [MySQL基础篇](/database/mysqlbase.md) 主要讲解的是：
 
 * MySQL8.0的安装和卸载
