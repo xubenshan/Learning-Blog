@@ -1,6 +1,7 @@
 * [首页](/README.md)
 * 算法
 	* [算法笔记](/algorithm/README.md)
+  * [传智杯](algorithm\竞赛\传智杯\第五届“传智杯”全国大学生计算机大赛（练习赛）.md)
 * Linux系统
 	* [Linux操作命令](#)
 	* [shell脚本](#)
