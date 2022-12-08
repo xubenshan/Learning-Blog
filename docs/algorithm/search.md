@@ -57,9 +57,11 @@ void dfs()
 
 ### 模板题——迷宫问题
 
-[题目链接](https://www.luogu.com.cn/problem/P1605)
 <img src="https://img-blog.csdnimg.cn/76bfafbf85ae400bbf980124689c8b74.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" style="zoom:67%;" />
+
 **题目分析**
+
+
 
 > 迷宫问题是拿来练习DFS与BFS很经典的题目。迷宫问题有很多种问法，比如迷宫从起点到终点有没有路径，有几条，最短路径是多少。
 
@@ -197,9 +199,11 @@ int main()
 
 ### 01背包问题(DFS暴力搜索)
 
-[题目链接](https://www.acwing.com/problem/content/2/)
 <img src="https://img-blog.csdnimg.cn/597a9a9e51c24576a62a7ad2d74e9b21.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16" alt="背包问题" style="zoom:67%;" />
+
 **题目分析**
+
+
 
 > 01背包问题是一个很经典的问题，它有多种解法。DFS是其中一种，在学习动态规划的时候还会提到它噢。
 >
