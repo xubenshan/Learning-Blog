@@ -392,7 +392,12 @@ int main()
 
 <img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/e84e6dee11d64d5688a7e07c419aa54b.png" alt="在这里插入图片描述" style="zoom: 67%;" />
 <img src="https://img-blog.csdnimg.cn/36278db485514eff94f4487f54653173.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5omT6JOd5qGl5p2v55qE6YCa5L-h5Lq6,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" style="zoom:67%;" />
+
+
+
 **题目分析**
+
+
 
 组合和排列的最大区别就是组合不需要考虑顺序，也就是说`123`和`132`是一样的。
 由于题目要求同一行的数必须按升序排序，因此可以让`DFS`函数记录当前处理的第`index`个位置，可以选的最小数`start`。
@@ -596,6 +601,8 @@ void bfs()
 
 **题目分析**
 
+
+
 该题是要求从起点到终点的最小步数。我们可以有两种解决方案，`DFS`和`BFS`。
 
  - 可以`DFS`所有从起点到终点的所有路径，然后取路径最短的那条。
@@ -757,6 +764,7 @@ int main()
 ### 马的遍历
 
 <img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/a05b6ed800fa4aeaa94f7e05612a2caf.png" alt="在这里插入图片描述" style="zoom:67%;" />
+
 **题目分析**
 
 这道题其实和前面那一道很相似，前面那一道是求从起点到终点的最短步数，而这道是求从起点(马的位置)到各个点(棋盘各个点)的最短步数。
