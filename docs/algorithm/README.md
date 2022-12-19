@@ -27,8 +27,5 @@
 
 ### 贪心
 
-## 算法竞赛
-### 蓝桥杯
-* [蓝桥杯题目汇总](/蓝桥杯/README.md)
-### 传智杯竞赛
-* [第五届传智杯竞赛](/algorithm/%E7%AB%9E%E8%B5%9B/%E4%BC%A0%E6%99%BA%E6%9D%AF/%E7%AC%AC%E4%BA%94%E5%B1%8A%E2%80%9C%E4%BC%A0%E6%99%BA%E6%9D%AF%E2%80%9D%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%A4%A7%E8%B5%9B%EF%BC%88%E7%BB%83%E4%B9%A0%E8%B5%9B%EF%BC%89.md)
+
+

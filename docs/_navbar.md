@@ -1,6 +1,7 @@
 * [首页](/README.md)
 * 算法
 	* [算法笔记](/algorithm/README.md)
+  * [蓝桥杯](/蓝桥杯/README.md)
 * Linux系统
 	* [Linux操作命令](#)
 	* [shell脚本](#)
