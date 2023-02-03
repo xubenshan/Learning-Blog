@@ -37,7 +37,8 @@
 [学唐链接](https://dtmobile.yunxuetang.cn/)
 
 [官网链接](https://dtcup.dtxiaotangren.com/)
-
+另外如果现在还没有学唐的账号，可以去B站看去年的省赛培训视频。内容基本一样。
+[培训视频](https://www.bilibili.com/video/BV1W3411K7FZ/?spm_id_from=333.1007.top_right_bar_window_custom_collection.content.click&vd_source=5940e85c0b18a907a0fdea51914b4f65)
 4. 在哪里练习仿真
 
 仿真平台现在还没开放，考前一周会开放。
@@ -55,5 +56,5 @@
   创建QQ群的目的，一方面给大家分享下学习资料，不用在去花冤枉钱，买到很多4G的资料。另一方面也是希望监督自己，今年取得一个不错的名次。有句话我很喜欢，与君共勉。
 
   我辈既务斯业，便当专心用功。
-
+我要说的就这些，后面想起别的来会继续补充。
 希望大家今年都能取得很好的成绩！
