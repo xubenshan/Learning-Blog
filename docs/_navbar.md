@@ -2,6 +2,9 @@
 * 算法
 	* [算法笔记](/algorithm/README.md)
   * [蓝桥杯](/蓝桥杯/README.md)
+
+* 大唐杯
+  * [学习经验分享](/大唐杯/learn.md)
 * Linux系统
 	* [Linux操作命令](#)
 	* [shell脚本](#)
@@ -38,4 +41,5 @@
   * [hexo](#)
   * [docsify](/docsify/docsify.md)
   * [makdown](#)
+
 
