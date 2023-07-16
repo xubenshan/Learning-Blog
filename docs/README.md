@@ -4,8 +4,6 @@
 
 笔记站点是由`docsify`搭建成的，具体的搭建过程可以移步到[docsify搭建教程](/docsify/docsify.md)。另外可以参考[官方文档](https://docsify.js.org/#/)。
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1966880591&auto=1&height=66"></iframe>
-
 # **算法**
 
 ## 算法笔记
