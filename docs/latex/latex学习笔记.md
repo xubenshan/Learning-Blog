@@ -1,10 +1,14 @@
-# latex学习笔记
+# latex排版笔记
 
 ## 前言
 
 很早就听说latex写论文排版非常好，寒假偶然看到ElegantBook，感觉latex的排版非常漂亮。下定决心学一下。怕以后自己忘记，决定用Typora做一下笔记。
 
 ## Texstudio及Texlive软件安装
+
+
+
+
 
 ## 常用的快捷键
 
@@ -103,9 +107,23 @@
 \end{lstlisting}
 ```
 
+### 插入pdf
+
+> 这个操作常用于封面制作。latex自制封面的话会很麻烦，另外尽管网上有很多现成的latex封面，将代码移植到本地可能会出现各种各样的问题。最简单的方法就是导出pdf，将pdf文件插入到自己写的文章里面。
+
+```latex
+%导入宏包
+\usepackage{pdfpages}
+
+%调用
+\includepdf[pages={1}]{cover.pdf}%注意要将pdf文件放在main.tex同一目录下
+```
+
 
 
 ## 好看的盒子样式
+
+比较好的教程：[点击这里](https://liam.page/2016/07/22/using-the-tcolorbox-package-to-create-a-new-theorem-environment/)
 
 > 如果全篇都是黑白样式，显得会很单调。给一些特定内容加上好看的盒子可以看起来条理清晰，重点突出。
 
@@ -436,5 +454,123 @@ overlay unbroken and first={ \node[below right,font=\small,color=magenta,text wi
 
 参考模板[点击这里](https://www.zhihu.com/question/402111484/answer/3302539544)
 
-### 
+### 封面设计
+
+> 在这里列出一些比较好看简洁或花哨的封面，方便以后的学
+
+* ```latex
+  % !TEX program = xelatex
+  % 简洁书籍 封面模板
+  % 作者信息：无垠的广袤
+  % 个人主页：http://blog.sina.com.cn/h2457528767
+  % 邮箱：lijinlei0907@163.com
+  % 创作不易，转载请注明出处，谢谢合作！
+  \documentclass{article}
+  \usepackage{amsmath}
+  \usepackage{ctex}
+  \usepackage{tikz}
+  \usetikzlibrary{intersections,decorations.text,shadings,3d,positioning,patterns}
+  \definecolor{c1}{RGB}{62,97,127}
+  \definecolor{c2}{RGB}{104,182,182}
+  \definecolor{c3}{RGB}{107,190,190}
+  \definecolor{c4}{RGB}{100,172,174}
+  \definecolor{c5}{RGB}{95,162,162}
+  \definecolor{c6}{RGB}{235,242,252}
+  \usepackage{hyperref}
+  \newcommand{\zhongsong}{\CJKfontspec{STZhongsong}}%华文中宋
+  \newcommand{\xinwei}{\CJKfontspec{STXinwei}}%华文新魏
+  \usepackage{lmodern}
+  \begin{document}
+  	\thispagestyle{empty}
+  	\begin{tikzpicture}[remember picture,overlay,font=\sffamily\bfseries]
+  		\fill[opacity=0.2,c6!50](current page.south east)rectangle (current page.north west);%遮住页码
+  		%===================网格线==============================
+  %		\draw[help lines,step=0.8cm,opacity=0.4,color=c1](current page.south east)grid(current page.north west);
+  		%=================右上方弧线图像========================
+  		\draw[ultra thick,c4,name path=big arc] ([xshift=-2mm]current page.north) arc(150:285:11)
+  		coordinate[pos=0.225] (x0);
+  		\begin{scope}
+  			\clip ([xshift=-2mm]current page.north) arc(150:285:11) --(current page.north east);
+  			\fill[c4!50,opacity=0.25] ([xshift=4.55cm]x0) circle (4.55);
+  			\fill[c4!50,opacity=0.25] ([xshift=3.4cm]x0) circle (3.4);
+  			\fill[c4!50,opacity=0.25] ([xshift=2.25cm]x0) circle (2.25);
+  			\draw[ultra thick,c4!50] (x0) arc(-90:30:6.5);
+  			\draw[ultra thick,c4] (x0) arc(90:-30:8.75);
+  			\draw[ultra thick,c4!50,name path=arc1] (x0) arc(90:-90:4.675);
+  			\draw[ultra thick,c4!50] (x0) arc(90:-90:2.875);
+  			\path[name intersections={of=big arc and arc1,by=x1}];
+  			\draw[ultra thick,c4,name path=arc2] (x1) arc(135:-20:4.75);
+  			\draw[ultra thick,c4!50] (x1) arc(135:-20:8.75);
+  			\path[name intersections={of=big arc and arc2,by={aux,x2}}];
+  			\draw[ultra thick,c4!50] (x2) arc(180:50:2.25);
+  		\end{scope}
+  		%================日期==================================
+  		\path[decoration={text along path,text color=c4,
+  			raise = -2.8ex,
+  			text = {|\sffamily\bfseries|10/05/2024},
+  			text align = center
+  		},
+  		decorate
+  		] ([xshift=-2mm]current page.north) arc(150:245:11);
+  		
+  		%===================坐标轴==============================
+  		\node[opacity=0.5,color=c1] at([xshift=4cm,yshift=-4cm]current page.north
+  		west){\tikz{\draw[-stealth](-0.3,0)--(0,0)node[below left]{$O$}--(3.6,0)node[below=2pt]{$x$};
+  				\draw[-stealth,color=c1](0,-0.42)--(0,2)node[left]{$y$};
+  				\draw(0,1.3)node[left]{$A$}..controls(1.4,0.6)and(2.2,2.4)..(2.8,1.7)node[right]{$B$}
+  				--(2.8,0)node[below]{$C$};\node at(0.65,1.4){$f(x)$};}};
+  		%=================标题信息=========================
+  		\node[text=c1,anchor=west,scale=5,inner sep=0pt,font=\zhongsong] at
+  		([xshift=-9.2cm,yshift=-1.25cm]current page.center) {考研政治八讲};
+  		\node[text=c1,anchor=west,scale=2.5,inner sep=0pt,font=\zhongsong] at
+  		([xshift=-4.2cm,yshift=-1.65cm]current page.center) {};
+  		\node[text=c1,anchor=west,scale=3,inner sep=0pt,font=\zhongsong] at
+  		([xshift=-9.20cm,yshift=-3.75cm]current page.center) {\fontencoding{T1}\fontfamily{ptm}\bfseries\selectfont 站在命题人视角的真题分析};
+  		\node[text=c1,anchor=west,scale=1.5,inner sep=0pt,font=\zhongsong] at
+  %		([xshift=-4.8cm,yshift=-3.65cm]current page.center) {\fontencoding{T1}\fontfamily{ptm}\bfseries\selectfont ()};
+  		%\node [text=c1,scale=3,font=\heiti] at (-0.5,-12.8){\fontencoding{T1}\fontfamily{ptm}\bfseries\selectfont Notes};
+  		%\node [text=c1,scale=1.5,font=\heiti] at (3,-12.98){\fontencoding{T1}\fontfamily{ptm}\bfseries\selectfont (First Edition)};
+  		
+  		\draw[ultra thick,c1!50]([xshift=1.5cm,yshift=-5cm]current page.west)--([xshift=-5cm,yshift=-5cm]current page.east);
+  		
+  		\node[text=c1,anchor=west,scale=2.5,inner sep=0pt,font=\heiti] at
+  		([xshift=-8.2cm,yshift=-6cm]current page.center) {才疏学浅的小熊 \;~编};
+  		
+  		\node[opacity=0.5,scale=1.8,color=c1!80] at ([xshift=0.75cm,yshift=-8.0cm]current page.center) {$i\hbar \partial_t \psi(\boldsymbol{r},t) = H\psi(\boldsymbol{r},t)$};
+  		\node[opacity=0.5,scale=1.8,color=c1!80] at ([xshift=4.80cm,yshift=-9.5cm]current page.center) {$= \left[-\frac{\hbar^2}{2m}\nabla^2+U(\boldsymbol{r})\right]\psi(\boldsymbol{r},t)$};
+  		
+  		%==============出版社信息=============================
+  		\node[text=c1,scale=1.8,font=\xinwei] at ([yshift=2cm]current page.south){\href{http://blog.sina.com.cn/h2457528767}{小熊的网站：xubenshan.top}};
+  	\end{tikzpicture}
+  	
+  \end{document}
+  % 创作不易，转载请注明出处，谢谢合作！
+  ```
+
+<img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/fenmian.jpg" alt="fenmian" style="zoom: 25%;" />
+
+* beautybook模板里面的封面（标准A4大小）
+
+<img src="https://cdn.jsdelivr.net/gh/xubenshan/pic-blog@main/img/cover1.jpg" alt="cover1" style="zoom: 25%;" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
